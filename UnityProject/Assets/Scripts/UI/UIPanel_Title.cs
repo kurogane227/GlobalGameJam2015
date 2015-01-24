@@ -10,7 +10,7 @@ public class UIPanel_Title : MonoBehaviour {
 
 	public void OnStartButtonPressed()
 	{
-		UIManager.Instance.titleScreenPage.SetActive(false);
+		//UIManager.Instance.titleScreenPage.SetActive(false);
 		UIManager.Instance.LoadLevel("levelScene");
 	}
 	

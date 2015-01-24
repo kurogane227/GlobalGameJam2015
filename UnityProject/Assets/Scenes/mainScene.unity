@@ -185,8 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d43eae314e494aa3ab139e37bcad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIsStillTicking: 1
-  cardType: blosser
   titleScreenObject: {fileID: 0}
   titleScreenScript: {fileID: 0}
   titleScreenPage: {fileID: 0}

@@ -12,8 +12,9 @@ public class UIEvent : MonoBehaviour {
 	public GameObject buttonImageY = null;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+	{
+		this.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame

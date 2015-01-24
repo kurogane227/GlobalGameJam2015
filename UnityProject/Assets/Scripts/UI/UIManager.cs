@@ -3,9 +3,6 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 	
-	public bool timeIsStillTicking = true;
-	public string cardType = "blosser";
-	
 	private static UIManager instance = null;
 	public static UIManager Instance
 	{
@@ -73,20 +70,43 @@ public class UIManager : MonoBehaviour {
 		{
 			if (playerNum == 1)
 			{
-				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				if (!HUDScript.player1HUD.GetComponent<UIPlayerHUD>().isOverheated)
+				{
+					HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				}
 			}
 			else if (playerNum == 2)
 			{
-				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				if (!HUDScript.player2HUD.GetComponent<UIPlayerHUD>().isOverheated)
+				{
+					HUDScript.player2HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				}
 			}
 			else if (playerNum == 3)
 			{
-				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				if (!HUDScript.player3HUD.GetComponent<UIPlayerHUD>().isOverheated)
+				{
+					HUDScript.player3HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				}
 			}
 			else
 			{
-				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				if (!HUDScript.player4HUD.GetComponent<UIPlayerHUD>().isOverheated)
+				{
+					HUDScript.player4HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+				}
 			}
+		}
+	}
+
+	public void ShowEventBox(string eventText, string buttonLetter = "")
+	{
+		if (HUDScript != null)
+		{
+			HUDScript.GetComponentInChildren<UIEvent>().gameObject.SetActive(true);
+
+			HUDScript.GetComponentInChildren<UIEvent>().eventText.text = eventText;
+			ShowButtonPrompt(buttonLetter);
 		}
 	}
 
@@ -118,7 +138,7 @@ public class UIManager : MonoBehaviour {
 			}
 			else
 			{
-				Debug.Log("Error: You did not send the correct button to ShowButtonPrompt");
+				Debug.Log("This event does not have a button letter associated with it.");
 			}
 		}
 	}
@@ -152,5 +172,13 @@ public class UIManager : MonoBehaviour {
 	{
 		Debug.Log ("Load Level here...");
 		Application.LoadLevel(levelSceneName);
+
+		StartCoroutine(WaitToLoadHUD());
+	}
+
+	public IEnumerator WaitToLoadHUD()
+	{
+		yield return new WaitForSeconds(0.1f);
+		LoadHUD();
 	}
 }

@@ -26,11 +26,11 @@ public class UIPanel_HUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (player1Reticle.activeSelf)
-		{
+		//if (player1Reticle.activeSelf)
+		//{
 			// Update this reticle
 			//player1Reticle.transform.position = ProjectToScreenSpace();
-		}
+		//}
 	}
 
 	protected Vector3 ProjectToScreenSpace( Vector3 Position )
