@@ -151,6 +151,6 @@ public class UIManager : MonoBehaviour {
 	public void LoadLevel(string levelSceneName)
 	{
 		Debug.Log ("Load Level here...");
-		//Application.LoadLevel(levelSceneName);
+		Application.LoadLevel(levelSceneName);
 	}
 }

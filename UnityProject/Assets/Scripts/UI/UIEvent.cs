@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIEvent : MonoBehaviour {
 	
 	public Text eventText = null;
+
 	public GameObject buttonImageA = null;
 	public GameObject buttonImageB = null;
 	public GameObject buttonImageX = null;
