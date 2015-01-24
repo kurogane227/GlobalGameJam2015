@@ -3,6 +3,11 @@ using System.Collections;
 
 public class UIPanel_HUD : MonoBehaviour {
 
+	public GameObject player1HUD;
+	public GameObject player2HUD;
+	public GameObject player3HUD;
+	public GameObject player4HUD;
+
 	// Use this for initialization
 	void Start () {
 	

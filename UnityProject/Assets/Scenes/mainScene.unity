@@ -192,6 +192,7 @@ MonoBehaviour:
   titleScreenPage: {fileID: 0}
   creditsScreenPage: {fileID: 0}
   HUDObject: {fileID: 0}
+  HUDScript: {fileID: 0}
 --- !u!4 &1854843171
 Transform:
   m_ObjectHideFlags: 0
