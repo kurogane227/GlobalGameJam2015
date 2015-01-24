@@ -62,7 +62,6 @@ public class InputManager : MonoBehaviour {
 		InputManager.pl_Controller.leftTrigger = Input.GetAxis ("TriggersL_1");
 		InputManager.pl_Controller.rightTrigger = Input.GetAxis ("TriggersR_1");
 
-
 		//a button
 		if ((int)InputManager.pl_Controller.a_Button <= 1)
 		{

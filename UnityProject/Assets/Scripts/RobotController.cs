@@ -18,16 +18,6 @@ public class RobotController : MonoBehaviour {
 		leftThrusterAssignment = new List<Thruster>();
 		rightThrusterAssignment = new List<Thruster>();
 		AssignInitialThrusters ();
-
-		print ("lt 1 = " + leftThrusterAssignment [0].gameObject.name);
-		print ("lt 2 = " + leftThrusterAssignment [1].gameObject.name);
-		print ("lt 3 = " + leftThrusterAssignment [2].gameObject.name);
-		print ("lt 4 = " + leftThrusterAssignment [3].gameObject.name);
-
-		print ("rt 1 = " + rightThrusterAssignment [0].gameObject.name);
-		print ("rt 2 = " + rightThrusterAssignment [1].gameObject.name);
-		print ("rt 3 = " + rightThrusterAssignment [2].gameObject.name);
-		print ("rt 4 = " + rightThrusterAssignment [3].gameObject.name);
 	}
 	
 	// Update is called once per frame
@@ -45,6 +35,7 @@ public class RobotController : MonoBehaviour {
 		leftThrusterAssignment [3].thrust_1 = InputManager.p4_Controller.leftTrigger;
 		rightThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.rightTrigger;
 
+
 	}
 
 	void AssignInitialThrusters()
@@ -59,12 +50,12 @@ public class RobotController : MonoBehaviour {
 		rightThrusterAssignment.Add (leftThruster);
 		rightThrusterAssignment.Add (rightThruster);
 
-		ShuffleThrusterList (leftThrusterAssignment);
-		ShuffleThrusterList (rightThrusterAssignment);
+		ShuffleThrusterList (leftThrusterAssignment, rightThrusterAssignment);
+		ShuffleThrusterList (rightThrusterAssignment, leftThrusterAssignment);
 
 	}
 
-	void ShuffleThrusterList(List<Thruster> listToShuffle)
+	void ShuffleThrusterList(List<Thruster> listToShuffle, List<Thruster> otherList)
 	{
 		int n = listToShuffle.Count;
 		for (int i = 0; i < n; i++) 
@@ -73,6 +64,74 @@ public class RobotController : MonoBehaviour {
 			Thruster t = listToShuffle[r];
 			listToShuffle[r] = listToShuffle[i];
 			listToShuffle[i] = t;
+		}
+		PerformComparisonCheck (listToShuffle, otherList);
+	}
+
+	void PerformComparisonCheck(List<Thruster> shufflingList, List<Thruster> otherList)
+	{
+		if (shufflingList [0] == otherList [0])
+		{
+			if (shufflingList [1] != otherList[0])
+			{
+				Thruster tempThruster = shufflingList[1];
+				shufflingList[1] = shufflingList[0];
+				shufflingList[0] = tempThruster;
+			}
+			else
+			{
+				Thruster tempThruster = shufflingList[2];
+				shufflingList[2] = shufflingList[0];
+				shufflingList[0] = tempThruster;
+			}
+		}
+
+		if (shufflingList [1] == otherList [1])
+		{
+			if (shufflingList [2] != otherList[1])
+			{
+				Thruster tempThruster = shufflingList[1];
+				shufflingList[2] = shufflingList[1];
+				shufflingList[1] = tempThruster;
+			}
+			else
+			{
+				Thruster tempThruster = shufflingList[3];
+				shufflingList[3] = shufflingList[1];
+				shufflingList[1] = tempThruster;
+			}
+		}
+
+		if (shufflingList [2] == otherList [2])
+		{
+			if (shufflingList [3] != otherList[2])
+			{
+				Thruster tempThruster = shufflingList[3];
+				shufflingList[3] = shufflingList[2];
+				shufflingList[2] = tempThruster;
+			}
+			else
+			{
+				Thruster tempThruster = shufflingList[0];
+				shufflingList[0] = shufflingList[2];
+				shufflingList[2] = tempThruster;
+			}
+		}
+
+		if (shufflingList [3] == otherList [3])
+		{
+			if (shufflingList [0] != otherList[3])
+			{
+				Thruster tempThruster = shufflingList[0];
+				shufflingList[0] = shufflingList[3];
+				shufflingList[3] = tempThruster;
+			}
+			else
+			{
+				Thruster tempThruster = shufflingList[1];
+				shufflingList[1] = shufflingList[3];
+				shufflingList[3] = tempThruster;
+			}
 		}
 	}
 }

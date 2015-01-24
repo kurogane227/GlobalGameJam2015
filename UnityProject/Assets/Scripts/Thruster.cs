@@ -17,5 +17,11 @@ public class Thruster : MonoBehaviour {
 	{
 
 		totalThrust = thrust_1 + thrust_2;
+		if (totalThrust > 0)
+		{
+			//print (thrust_1 + "   " + thrust_2 + "    " + totalThrust);
+			//GetComponentInParent<Rigidbody> ().AddForceAtPosition (new Vector3 (0, 0, totalThrust), this.transform.position);
+			GetComponentInParent<Rigidbody>().AddForce(this.transform.forward * totalThrust * 2);
+		}
 	}
 }
