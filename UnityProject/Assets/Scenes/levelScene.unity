@@ -13,9 +13,9 @@ SceneSettings:
 --- !u!104 &2
 RenderSettings:
   m_Fog: 1
-  m_FogColor: {r: .0941176489, g: .196078435, b: .494117647, a: 1}
-  m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogColor: {r: .0627451017, g: .101960786, b: .305882365, a: 1}
+  m_FogMode: 2
+  m_FogDensity: .00499999989
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
@@ -4931,7 +4931,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .345588207, g: .182958469, b: .182958469, a: 1}
+  m_Color: {r: .110294104, g: .0235185977, b: .0235185977, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -10373,6 +10373,18 @@ Prefab:
     - target: {fileID: 404756, guid: 41ea226df1f16284daaf9a74a4f1aa6d, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 10829580, guid: 41ea226df1f16284daaf9a74a4f1aa6d, type: 2}
+      propertyPath: m_Color.r
+      value: .110294104
+      objectReference: {fileID: 0}
+    - target: {fileID: 10829580, guid: 41ea226df1f16284daaf9a74a4f1aa6d, type: 2}
+      propertyPath: m_Color.g
+      value: .0235185977
+      objectReference: {fileID: 0}
+    - target: {fileID: 10829580, guid: 41ea226df1f16284daaf9a74a4f1aa6d, type: 2}
+      propertyPath: m_Color.b
+      value: .0235185977
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 41ea226df1f16284daaf9a74a4f1aa6d, type: 2}
