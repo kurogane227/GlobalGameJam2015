@@ -55,6 +55,19 @@ ModelImporter:
     100098: CATRigRforearm
     100100: CATRigRupperarm
     100102: Player_Robot 1
+    100104: CATRigLArm3
+    100106: CATRigLArm4
+    100108: CATRigLArm5
+    100110: CATRigLArm6
+    100112: CATRigRArm3
+    100114: CATRigRArm4
+    100116: CATRigRArm5
+    100118: CATRigRArm6
+    100120: Jet_01
+    100122: Jet_02
+    100124: Jet_03
+    100126: Jet_04
+    100128: Player_Base
     400000: CATRigHub001
     400002: CATRigHub002
     400004: CATRigHub002Bone001
@@ -107,10 +120,24 @@ ModelImporter:
     400098: CATRigRforearm
     400100: CATRigRupperarm
     400102: Player_Robot 1
+    400104: CATRigLArm3
+    400106: CATRigLArm4
+    400108: CATRigLArm5
+    400110: CATRigLArm6
+    400112: CATRigRArm3
+    400114: CATRigRArm4
+    400116: CATRigRArm5
+    400118: CATRigRArm6
+    400120: Jet_01
+    400122: Jet_02
+    400124: Jet_03
+    400126: Jet_04
+    400128: Player_Base
     4300000: Player_Robot
     7400000: Take 001
     9500000: //RootNode
     13700000: Player_Robot 1
+    13700002: Player_Robot
   materials:
     importMaterials: 1
     materialName: 0
