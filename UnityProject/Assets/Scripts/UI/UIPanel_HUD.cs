@@ -13,6 +13,17 @@ public class UIPanel_HUD : MonoBehaviour {
 	public GameObject player3Reticle = null;
 	public GameObject player4Reticle = null;
 
+	private bool usePlayer1Reticle = false;
+	private bool usePlayer2Reticle = false;
+	private bool usePlayer3Reticle = false;
+	private bool usePlayer4Reticle = false;
+
+	public GameObject eventObject = null;
+
+	private Camera thisMainCamera = null;
+	private GameObject objectToAttachTo = null;
+	public GameObject canvasObject = null;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -21,33 +32,61 @@ public class UIPanel_HUD : MonoBehaviour {
 		player2Reticle.SetActive(false);
 		player3Reticle.SetActive(false);
 		player4Reticle.SetActive(false);
+
+		thisMainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		objectToAttachTo = GameObject.Find("CATRig_Head");
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		//if (player1Reticle.activeSelf)
-		//{
-			// Update this reticle
-			//player1Reticle.transform.position = ProjectToScreenSpace();
-		//}
+		// Determine if the reticles should be visible and attached
+		if (player1Reticle.activeSelf)
+			usePlayer1Reticle = true;
+		else
+			usePlayer1Reticle = false;
+
+		if (player1Reticle.activeSelf)
+			usePlayer1Reticle = true;
+		else
+			usePlayer1Reticle = false;
+
+		if (player1Reticle.activeSelf)
+			usePlayer1Reticle = true;
+		else
+			usePlayer1Reticle = false;
+
+		if (player1Reticle.activeSelf)
+			usePlayer1Reticle = true;
+		else
+			usePlayer1Reticle = false;
+
+		if (usePlayer1Reticle)
+			player1Reticle.GetComponent<RectTransform>().anchoredPosition = ProjectToScreenSpace(objectToAttachTo);
+
+		//DEBUG, TODO: REMOVE THIS
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			player1Reticle.SetActive(true);
+			player1Reticle.GetComponent<RectTransform>().anchoredPosition = ProjectToScreenSpace(objectToAttachTo);
+		}
 	}
 
-	protected Vector3 ProjectToScreenSpace( Vector3 Position )
-	{
-		// When using this function, the returned position will be in UI world space
-		// so set transform.position and NOT transform.localPosition
-
-		// Get position with perspective
-		//Vector3 screenPos = LevelManager.Me.ActiveCamera.WorldToScreenPoint(Position);
+	protected Vector2 ProjectToScreenSpace(GameObject attachToThisObject)
+	{			
+		//first you need the RectTransform component of your canvas
+		RectTransform CanvasRect = canvasObject.GetComponent<RectTransform>();
 		
-		// Convert the perspective to ortho
-		//screenPos = HUDCamera.ScreenToWorldPoint(screenPos);
+		//then you calculate the position of the UI element
+		//0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
 		
-		//screenPos = new Vector3( screenPos.x, screenPos.y, 0.0f );
+		Vector2 ViewportPosition = thisMainCamera.WorldToViewportPoint(attachToThisObject.transform.position);
+		Vector2 attachToThisObject_ScreenPosition = new Vector2(
+			((ViewportPosition.x*CanvasRect.sizeDelta.x)-(CanvasRect.sizeDelta.x*0.5f)),
+			((ViewportPosition.y*CanvasRect.sizeDelta.y)-(CanvasRect.sizeDelta.y*0.5f)));
 		
-		//return screenPos;
-		return Vector3.zero;
+		//now you can set the position of the ui element
+		return (attachToThisObject_ScreenPosition);
 	}
 
 	public void TurnOnReticle(int playerNum)
