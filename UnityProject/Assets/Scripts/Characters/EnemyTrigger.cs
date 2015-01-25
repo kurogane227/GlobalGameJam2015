@@ -21,13 +21,13 @@ public class EnemyTrigger : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		
 	}
 	void OnTriggerEnter(Collider other)
 	{
 		if (other == player.collider && !enemy.dead) 
 		{
-			if(other.rigidbody.velocity.magnitude > crashThreshold)
+			if(other.rigidbody.velocity.magnitude*other.rigidbody.velocity.magnitude > crashThreshold)
 			{
 			Debug.Log("KABOOM");
 				enemy.dead = true;
@@ -37,6 +37,7 @@ public class EnemyTrigger : MonoBehaviour
 			{
 				engage = true;
 				enemy.EngageSet();
+				player.rigidbody.velocity = Vector3.zero;
 			}
 			
 		}

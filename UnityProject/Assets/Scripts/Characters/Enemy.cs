@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 	public EnemyTrigger enemyTrigger;
 
 	public Transform[] patrolWayPoints;
+	
+	public GameObject GameMain;
 
 	private NavMeshAgent nav;
 	private Transform player;
@@ -21,8 +23,12 @@ public class Enemy : MonoBehaviour
 	//public int promptTwo;
 	//public int promptThree;
 	
-	public int[] promptThresholds;
-	public string[] promptButtons;
+	 int[] promptThresholds;
+	 string[] promptButtons;
+	 int[] promptScore;
+	 bool[] promptSuccess;
+	int promptThresholdBuffer;
+	
 	public int promptIndex;
 	
 	public int promptTimer;
@@ -40,6 +46,15 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private int hardMax;
 
+	private float engageTimer;
+	private float engageTimeLimit;
+	
+	private int QTE_Success;
+	private int QTE_Failure;
+	
+	private UIManager UI;
+	private GameManager gameMain;
+	
 	public enum difficultyStates 
 	{
 		EASY,
@@ -56,8 +71,6 @@ public class Enemy : MonoBehaviour
 		"B",
 		"X",
 		"Y",
-		"LB",
-		"RB",
 		"LSL",
 		"LSR",
 		"RSL",
@@ -66,10 +79,16 @@ public class Enemy : MonoBehaviour
 	
 	public bool dead = false;
 	
+	float timer;
+	
+	public Rigidbody playerRB;
+	
 	public	difficultyStates difficulty;
 	// Use this for initialization
 	void Start () 
 	{
+		UI = GameMain.GetComponent<UIManager>();
+		gameMain = GameMain.GetComponent<GameManager>();
 		
 	}
 
@@ -82,6 +101,12 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		timer += Time.deltaTime;
+		//if(timer > 1)
+		{
+			Debug.Log(playerRB.rigidbody.velocity.magnitude*playerRB.rigidbody.velocity.magnitude);
+			timer = 0;
+		}
 		if (dead)
 			{
 			
@@ -97,6 +122,8 @@ public class Enemy : MonoBehaviour
 	void Engage()
 	{
 		nav.Stop ();
+		if(engageTimer >= 0)
+			ProcessButtons();
 	}
 
 	void Chase ()
@@ -132,9 +159,13 @@ public class Enemy : MonoBehaviour
 
 	public void EngageSet()
 	{
-		promptThresholds = new int[6];
-		promptButtons = new string[6];
+		promptThresholds = new int[3];
+		promptButtons = new string[3];
+		promptSuccess = new bool[3];
 		promptIndex = 0;
+		
+		QTE_Success = 0;
+		QTE_Failure = 0;
 		
 		int holdCheck = Random.Range(0,2);
 
@@ -156,6 +187,7 @@ public class Enemy : MonoBehaviour
 			promptButtons[promptIndex] = SetButtonPrompt();
 			promptThresholds[promptIndex] = PromptRange();
 		}
+		promptIndex = 0;
 	}
 	
 	int PromptRange()
@@ -210,5 +242,300 @@ public class Enemy : MonoBehaviour
 		newTorque.z = Random.Range (-100,100);
 		rigidbody.AddTorque(newTorque);
 		rigidbody.AddExplosionForce(deathForce, forcePos, deathRadius);
+	}
+	
+	void ProcessButtons ()
+	{
+		if(Input.GetButtonDown("A_1"))
+		{
+			A_Press(1);
+		}
+		if(Input.GetButtonDown("A_2"))
+		{
+			A_Press(2);
+			
+		}
+		if(Input.GetButtonDown("A_3"))
+		{
+			A_Press(3);
+			
+		}
+		if(Input.GetButtonDown("A_4"))
+		{
+			A_Press(4);
+			
+		}
+		if(Input.GetButtonDown("B_1"))
+		{
+			B_Press(1);
+		}
+		if(Input.GetButtonDown("B_2"))
+		{
+			B_Press(2);
+			
+		}
+		if(Input.GetButtonDown("B_3"))
+		{
+			B_Press(3);
+			
+		}
+		if(Input.GetButtonDown("B_4"))
+		{
+			B_Press(4);
+			
+		}
+		if(Input.GetButtonDown("X_1"))
+		{
+			X_Press(1);
+		}
+		if(Input.GetButtonDown("X_2"))
+		{
+			X_Press(2);
+			
+		}
+		if(Input.GetButtonDown("X_3"))
+		{
+			X_Press(3);
+			
+		}
+		if(Input.GetButtonDown("X_4"))
+		{
+			X_Press(4);
+			
+		}
+		if(Input.GetButtonDown("Y_1"))
+		{
+			Y_Press(1);
+		}
+		if(Input.GetButtonDown("Y_2"))
+		{
+			Y_Press(2);
+			
+		}
+		if(Input.GetButtonDown("Y_3"))
+		{
+			Y_Press(3);
+			
+		}
+		if(Input.GetButtonDown("Y_4"))
+		{
+			Y_Press(4);
+			
+		}
+		/*
+		if(Input.GetButton == "A_1"))
+		{
+			A_Button(1);
+		}
+		if(Input.GetButton == "A_2"))
+		{
+			A_Button(2);
+			
+		}
+		if(Input.GetButton == "A_3"))
+		{
+			A_Button(3);
+			
+		}
+		if(Input.GetButton == "A_4"))
+		{
+			A_Button(4);
+			
+		}
+		if(Input.GetButton == "B_1"))
+		{
+			B_Button(1);
+		}
+		if(Input.GetButton == "B_2"))
+		{
+			B_Button(2);
+			
+		}
+		if(Input.GetButton == "B_3"))
+		{
+			B_Button(3);
+			
+		}
+		if(Input.GetButton == "B_4"))
+		{
+			B_Button(4);
+			
+		}
+		if(Input.GetButton == "X_1"))
+		{
+			X_Button(1);
+		}
+		if(Input.GetButton == "X_2"))
+		{
+			X_Button(2);
+			
+		}
+		if(Input.GetButton == "X_3"))
+		{
+			X_Button(3);
+			
+		}
+		if(Input.GetButton == "X_4"))
+		{
+			X_Button(4);
+			
+		}
+		if(Input.GetButton == "Y_1"))
+		{
+			Y_Button(1);
+		}
+		if(Input.GetButton == "Y_2"))
+		{
+			Y_Button(2);
+			
+		}
+		if(Input.GetButton == "Y_3"))
+		{
+			Y_Button(3);
+			
+		}
+		if(Input.GetButtonDown("Y_4"))
+		{
+			Y_Button(4);
+			
+		}
+		*/
+	}
+	void A_Press (int pNum)
+	{
+		QTE("A", pNum);
+	}
+	void B_Press (int pNum)
+	{
+		QTE("B", pNum);
+	}
+	void X_Press (int pNum)
+	{
+		QTE("X", pNum);
+	}
+	void Y_Press (int pNum)
+	{
+		QTE("A", pNum);
+	}
+	void QTE(string button, int pNum)
+	{
+		bool wrongButton = true;
+	
+		if(engageTimer <= engageTimeLimit)
+		{
+			for(int j = 0; j < promptThresholds.Length; j++)
+			{
+				if(button == promptButtons[j])
+					wrongButton = false;
+			}
+			for(int i = 0; i < promptThresholds.Length; i++)
+			{
+				promptScore[i]++;
+				UI.UpdateEventCount(promptScore[i]);
+				if(promptThresholds[i] > 0)
+				{
+					if(promptScore[i] < promptThresholds[i])
+					{
+						//UI is unsatisfied
+						UI.ShowEventBox(promptThresholds[i], promptButtons[i]);
+						promptSuccess[i] = false;
+					}
+					else if (promptScore[i] >= promptThresholds[i] && promptScore[i] < promptThresholds[i] + promptThresholdBuffer)
+					{
+						//satisfy condition
+						promptSuccess[i] = true;
+					}
+					else
+					{
+						//penalize player
+						promptSuccess[i] = false;
+						SubtractScore(pNum);
+					}
+				}
+				//for hold buttons if time permitted
+				/*
+				else if (promptThresholds[i] < 0)
+				{
+					if(promptScore[i] > promptThresholds[i])
+					{
+						//do a thing
+						QTE_Success = false;
+						
+					}
+					else if (promptScore[i] > promptThresholds[i] - promptThresholdBuffer)
+					{
+						//satisfy condition
+						QTE_Success = true;
+						
+					}
+					else
+					{
+						//penalize player
+						promptScore[i]--;
+						SubtractScore(pNum);
+						QTE_Success = false;
+						
+					}	
+				}
+				*/
+			}
+			if (wrongButton)
+			{
+				SubtractScore(pNum);
+			}
+		}
+		//time is up
+		else
+		{
+			engageTimer = -1;
+			int engageSuccess = 0;
+			int engageFailure = 0;
+			for(int i = 0; i < promptThresholds.Length; i++)
+			{
+				if(promptSuccess[i])
+				{
+					engageSuccess++;
+				}
+				else
+				{
+					engageFailure++;
+				}
+				if(engageSuccess >=  engageFailure)
+				{
+					//engage success
+					gameMain.groupScore++;
+				}
+				else
+				{
+					//engage failure
+					gameMain.groupHealth--;
+				}
+			}
+			UI.HideEventBox();
+		}
+	}
+	
+	void AddScore(int pNum)
+	{
+		if (pNum == 1 )
+			gameMain.p1Score++;
+		else if (pNum == 2 )
+			gameMain.p2Score++;
+		else if (pNum == 3 )
+			gameMain.p3Score++;
+		else if (pNum == 4 )
+			gameMain.p4Score++;
+		
+	}
+	void SubtractScore(int pNum)
+	{
+		if (pNum == 1 )
+			gameMain.p1Score-=2;
+		else if (pNum == 2 )
+			gameMain.p2Score-=2;
+		else if (pNum == 3 )
+			gameMain.p3Score-=2;
+		else if (pNum == 4 )
+			gameMain.p4Score-=2;		
 	}
 }
