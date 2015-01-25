@@ -18,6 +18,5 @@ public class UIPanel_Results : MonoBehaviour {
 	public void OnBackButtonPressed()
 	{
 		Application.LoadLevel("mainScene");
-		UIManager.Instance.DestroyResults();
 	}
 }
