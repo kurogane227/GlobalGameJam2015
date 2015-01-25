@@ -24,8 +24,8 @@ Material:
         first:
           name: _Normal
         second:
-          m_Texture: {fileID: 2800000, guid: 80286949e259c2d44876306923857245, type: 3}
-          m_Scale: {x: 5, y: 5}
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 100, y: 100}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -45,7 +45,7 @@ Material:
       data:
         first:
           name: _FresnelExponent
-        second: 5.40131569
+        second: 4.125
     m_Colors:
       data:
         first:
