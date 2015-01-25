@@ -45,13 +45,20 @@ public class UIPlayerHUD : MonoBehaviour {
 			overheatObject.SetActive(true);
 			// TODO: Figure out why animation is not working
 			overheatObject.animation.Play("overheat");
-			alienALTPicture.SetActive(true);
-			if (myNumber == 1 || myNumber == 2)
-				alienPicture.animation.Play("pictureShake");
-			else
-				alienPicture.animation.Play("pictureShake2");
+			CharacterShake(3.0f);
 			StartCoroutine(Cooldown(reenableNum));
 		}
+	}
+
+	public void CharacterShake(float timeToShake)
+	{
+		alienALTPicture.SetActive(true);
+		if (myNumber == 1 || myNumber == 2)
+			alienPicture.animation.Play("pictureShake");
+		else
+			alienPicture.animation.Play("pictureShake2");
+			
+		StartCoroutine(RestoreCharacterPicture(timeToShake));
 	}
 
 	public IEnumerator Cooldown(int numberToRevive)
@@ -76,5 +83,14 @@ public class UIPlayerHUD : MonoBehaviour {
 		powerFill.fillAmount = 0.0f;
 		isOverheated = false;
 		overheatObject.SetActive(false);
+	}
+	
+	public IEnumerator RestoreCharacterPicture(float timeToDelay)
+	{
+		yield return new WaitForSeconds(timeToDelay);
+		
+		Debug.Log("COOLED DOWN");
+		
+		alienALTPicture.SetActive(false);
 	}
 }
