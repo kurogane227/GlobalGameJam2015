@@ -77,7 +77,7 @@ public class RobotController : MonoBehaviour {
 		ShuffleThrusterList (rightThrusterAssignment, leftThrusterAssignment);
 		MatchRobotColors();
 
-		//StartCoroutine(UpdatePlayerThrusterColors());
+		StartCoroutine(UpdatePlayerThrusterColors());
 	}
 
 	void ShuffleThrusterList(List<Thruster> listToShuffle, List<Thruster> otherList)
@@ -92,7 +92,7 @@ public class RobotController : MonoBehaviour {
 		}
 		PerformComparisonCheck (listToShuffle, otherList);
 		
-		//StartCoroutine(UpdatePlayerThrusterColors());
+		StartCoroutine(UpdatePlayerThrusterColors());
 	}
 
 	void PerformComparisonCheck(List<Thruster> shufflingList, List<Thruster> otherList)
@@ -178,14 +178,14 @@ public class RobotController : MonoBehaviour {
 		baseRotation.Rotate(Time.deltaTime * 30f, 0, 0);
 	}
 	
-
+<<<<<<< HEAD
 	public void MatchRobotColors()
 	{
 		
 		//mats[3].mainTexture
 	}
 	
-/*
+=======
 	public IEnumerator UpdatePlayerThrusterColors()
 	{
 		yield return new WaitForSeconds(0.01f); // hack for setup timing
@@ -374,6 +374,6 @@ public class RobotController : MonoBehaviour {
 			UIManager.Instance.HUDScript.player4HUD.GetComponent<UIPlayerHUD>().SetNewTriggerPanels(UIManager.Instance.player4LeftThrusterColor, UIManager.Instance.player4RightThrusterColor);
 		}
 	}
-*/
+>>>>>>> 019e7e2bbeccbc36ef0b69cb82c204727c8e9613
 }
 

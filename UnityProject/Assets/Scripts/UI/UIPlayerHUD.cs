@@ -12,16 +12,6 @@ public class UIPlayerHUD : MonoBehaviour {
 	public bool isOverheated = false;
 	public GameObject alienPicture;
 	public GameObject alienALTPicture;
-	
-	public GameObject leftTriggerGreen;
-	public GameObject leftTriggerRed;
-	public GameObject leftTriggerBlue;
-	public GameObject leftTriggerYellow;
-	
-	public GameObject rightTriggerGreen;
-	public GameObject rightTriggerRed;
-	public GameObject rightTriggerBlue;
-	public GameObject rightTriggerYellow;
 
 	// Use this for initialization
 	void Start ()
@@ -29,8 +19,6 @@ public class UIPlayerHUD : MonoBehaviour {
 		powerFill.fillAmount = 0.0f;
 		overheatObject.SetActive(false);
 		alienALTPicture.SetActive(false);
-		
-		//SetNewTriggerPanels("blue", "red");
 	}
 	
 	// Update is called once per frame
@@ -104,67 +92,5 @@ public class UIPlayerHUD : MonoBehaviour {
 		Debug.Log("COOLED DOWN");
 		
 		alienALTPicture.SetActive(false);
-	}
-	
-	public void SetNewTriggerPanels(string leftTriggerColor, string rightTriggerColor)
-	{
-		// Front = Red, Right = Green, Back = Blue, Left = Yellow
-	
-		HideAllTriggerPanels();
-		
-		if (leftTriggerColor == "green")
-		{
-			leftTriggerGreen.SetActive(true);
-		}
-		else if (leftTriggerColor == "red")
-		{
-			leftTriggerRed.SetActive(true);
-		}
-		else if (leftTriggerColor == "blue")
-		{
-			leftTriggerBlue.SetActive(true);
-		}
-		else if (leftTriggerColor == "yellow")
-		{
-			leftTriggerYellow.SetActive(true);
-		}
-		else
-		{
-			Debug.Log("INCORRECT COLOR GIVEN TO LEFT TRIGGER");
-		}
-		
-		if (rightTriggerColor == "green")
-		{
-			rightTriggerGreen.SetActive(true);
-		}
-		else if (rightTriggerColor == "red")
-		{
-			rightTriggerRed.SetActive(true);
-		}
-		else if (rightTriggerColor == "blue")
-		{
-			rightTriggerBlue.SetActive(true);
-		}
-		else if (rightTriggerColor == "yellow")
-		{
-			rightTriggerYellow.SetActive(true);
-		}
-		else
-		{
-			Debug.Log("INCORRECT COLOR GIVEN TO RIGHT TRIGGER");
-		}
-	}
-	
-	public void HideAllTriggerPanels()
-	{
-		leftTriggerGreen.SetActive(false);
-		leftTriggerRed.SetActive(false);
-		leftTriggerBlue.SetActive(false);
-		leftTriggerYellow.SetActive(false);
-		
-		rightTriggerGreen.SetActive(false);
-		rightTriggerRed.SetActive(false);
-		rightTriggerBlue.SetActive(false);
-		rightTriggerYellow.SetActive(false);
 	}
 }

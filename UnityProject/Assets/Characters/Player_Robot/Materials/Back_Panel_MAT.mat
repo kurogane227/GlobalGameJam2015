@@ -48,21 +48,21 @@ Material:
         second: 0
       data:
         first:
+          name: _ScrollSpeed
+        second: 0
+      data:
+        first:
           name: _ScrollSpeed_V
         second: 10
       data:
         first:
           name: _ScrollSpeed_U
         second: 0
-      data:
-        first:
-          name: _ScrollSpeed
-        second: 0
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .448529422, g: .448529422, b: .448529422, a: 1}
+        second: {r: .110294104, g: .558215201, b: 1, a: 1}
       data:
         first:
           name: _ScrollTexColor
