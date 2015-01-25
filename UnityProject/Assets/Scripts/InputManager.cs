@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour {
 	public static ControllerInput player4Controller;
 */
 
+	public static bool disableTriggers;
+
 	public struct XBoxController
 	{
 		public float leftTrigger;
@@ -46,15 +48,24 @@ public class InputManager : MonoBehaviour {
 	{
 		if (!UIManager.Instance.disablePlayer1Input)
 			UpdatePlayer1Input ();
+		else
+			ClearPlayer1Input();
 			
 		if (!UIManager.Instance.disablePlayer2Input)
 			UpdatePlayer2Input ();
+		else
+			ClearPlayer2Input();
 			
 		if (!UIManager.Instance.disablePlayer3Input)
 			UpdatePlayer3Input ();
+		else
+			ClearPlayer3Input();
 			
 		if (!UIManager.Instance.disablePlayer4Input)
 			UpdatePlayer4Input ();
+		else
+			ClearPlayer4Input();
+		
 
 		
 
@@ -65,9 +76,14 @@ public class InputManager : MonoBehaviour {
 
 	public void UpdatePlayer1Input ()
 	{
+		if (!disableTriggers)
+		{
+			InputManager.pl_Controller.leftTrigger = Input.GetAxis ("TriggersL_1");
+			InputManager.pl_Controller.rightTrigger = Input.GetAxis ("TriggersR_1");
+		}
+		
 
-		InputManager.pl_Controller.leftTrigger = Input.GetAxis ("TriggersL_1");
-		InputManager.pl_Controller.rightTrigger = Input.GetAxis ("TriggersR_1");
+
 
 		//a button
 		if ((int)InputManager.pl_Controller.a_Button <= 1)
@@ -171,9 +187,11 @@ public class InputManager : MonoBehaviour {
 
 	public void UpdatePlayer2Input ()
 	{
-
-		InputManager.p2_Controller.leftTrigger = Input.GetAxis ("TriggersL_2");
-		InputManager.p2_Controller.rightTrigger = Input.GetAxis ("TriggersR_2");
+		if (!disableTriggers)
+		{
+			InputManager.p2_Controller.leftTrigger = Input.GetAxis ("TriggersL_2");
+			InputManager.p2_Controller.rightTrigger = Input.GetAxis ("TriggersR_2");
+		}
 		
 		
 		//a button
@@ -278,8 +296,12 @@ public class InputManager : MonoBehaviour {
 
 	public void UpdatePlayer3Input ()
 	{
-		InputManager.p3_Controller.leftTrigger = Input.GetAxis ("TriggersL_3");
-		InputManager.p3_Controller.rightTrigger = Input.GetAxis ("TriggersR_3");
+		if (!disableTriggers)
+		{
+			InputManager.p3_Controller.leftTrigger = Input.GetAxis ("TriggersL_3");
+			InputManager.p3_Controller.rightTrigger = Input.GetAxis ("TriggersR_3");
+		}
+		
 		
 		
 		//a button
@@ -384,8 +406,12 @@ public class InputManager : MonoBehaviour {
 
 	public void UpdatePlayer4Input ()
 	{
-		InputManager.p4_Controller.leftTrigger = Input.GetAxis ("TriggersL_4");
-		InputManager.p4_Controller.rightTrigger = Input.GetAxis ("TriggersR_4");
+	
+		if (!disableTriggers)
+		{
+			InputManager.p4_Controller.leftTrigger = Input.GetAxis ("TriggersL_4");
+			InputManager.p4_Controller.rightTrigger = Input.GetAxis ("TriggersR_4");
+		}
 		
 		
 		//a button
@@ -486,5 +512,45 @@ public class InputManager : MonoBehaviour {
 				InputManager.p4_Controller.y_Button = XBoxController.buttonState.JUST_RELEASED;
 			}
 		}
+	}
+	
+	public void ClearPlayer1Input()
+	{
+		InputManager.pl_Controller.leftTrigger = 0f;
+		InputManager.pl_Controller.rightTrigger = 0f;
+		InputManager.pl_Controller.a_Button = XBoxController.buttonState.RELEASED;
+		InputManager.pl_Controller.b_Button = XBoxController.buttonState.RELEASED;
+		InputManager.pl_Controller.x_Button = XBoxController.buttonState.RELEASED;
+		InputManager.pl_Controller.y_Button = XBoxController.buttonState.RELEASED;
+	}
+	
+	public void ClearPlayer2Input()
+	{
+		InputManager.p2_Controller.leftTrigger = 0f;
+		InputManager.p2_Controller.rightTrigger = 0f;
+		InputManager.p2_Controller.a_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p2_Controller.b_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p2_Controller.x_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p2_Controller.y_Button = XBoxController.buttonState.RELEASED;
+	}
+	
+	public void ClearPlayer3Input()
+	{
+		InputManager.p3_Controller.leftTrigger = 0f;
+		InputManager.p3_Controller.rightTrigger = 0f;
+		InputManager.p3_Controller.a_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p3_Controller.b_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p3_Controller.x_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p3_Controller.y_Button = XBoxController.buttonState.RELEASED;
+	}
+	
+	public void ClearPlayer4Input()
+	{
+		InputManager.p4_Controller.leftTrigger = 0f;
+		InputManager.p4_Controller.rightTrigger = 0f;
+		InputManager.p4_Controller.a_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p4_Controller.b_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p4_Controller.x_Button = XBoxController.buttonState.RELEASED;
+		InputManager.p4_Controller.y_Button = XBoxController.buttonState.RELEASED;
 	}
 }
