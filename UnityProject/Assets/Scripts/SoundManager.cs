@@ -147,4 +147,36 @@ public class SoundManager : MonoBehaviour {
 			break;
 		}
 	}
+
+	public void PlayChildCheer(){
+		int choice = Random.Range(1, 4);
+
+		switch(choice){
+		case 1:
+			audioToPlay.PlayOneShot(childrenHooray1);
+			break;
+		case 2:
+			audioToPlay.PlayOneShot(childrenHooray2);
+			break;
+		default:
+			audioToPlay.PlayOneShot(childrenHooray3);
+			break;
+		}
+	}
+
+	public void PlayChildCry(){
+		int choice = Random.Range(1, 4);
+
+		switch (choice){
+		case 1:
+			audioToPlay.PlayOneShot(childrenSad1);
+			break;
+		case 2:
+			audioToPlay.PlayOneShot(childrenSad2);
+			break;
+		default:
+			audioToPlay.PlayOneShot(childrenSad3);
+			break;
+		}
+	}
 }
