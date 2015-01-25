@@ -73,6 +73,10 @@ public class SoundManager : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 	}
 
+	public void PlayFanfare(){
+		audioToPlay.PlayOneShot(fanfare);
+	}
+
 	public void PlayEveryoneScream(){
 		audioToPlay.PlayOneShot(everyoneScream);
 	}
