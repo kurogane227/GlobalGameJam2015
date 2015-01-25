@@ -29,6 +29,19 @@ public class UIManager : MonoBehaviour {
 		LoadTitleScreen();
 	}
 
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			ShowEventBox("B", 15);
+		}
+
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			UpdatePowerBar(1, HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount + 0.1f);
+		}
+	}
+
 	//==================================================================================================|
 	// TITLE SCREEN
 	//==================================================================================================|
@@ -61,7 +74,7 @@ public class UIManager : MonoBehaviour {
 	{
 		// Load the main menu UI
 		HUDObject = GameObject.Instantiate(Resources.Load ("UI/Prefabs/HUD")) as GameObject;
-		HUDScript = (UIPanel_HUD)HUDObject.GetComponent<UIPanel_HUD>() as UIPanel_HUD;
+		HUDScript = (UIPanel_HUD)HUDObject.GetComponentInChildren<UIPanel_HUD>() as UIPanel_HUD;
 	}
 
 	public void UpdatePowerBar(int playerNum, float powerAmount)
@@ -99,14 +112,54 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
-	public void ShowEventBox(string eventText, string buttonLetter = "")
+	public void PlayHitReaction(int playerNum)
 	{
 		if (HUDScript != null)
 		{
-			HUDScript.GetComponentInChildren<UIEvent>().gameObject.SetActive(true);
+			if (playerNum == 1)
+			{
+				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+			}
+			else if (playerNum == 2)
+			{
+				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+			}
+			else if (playerNum == 3)
+			{
+				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+			}
+			else if (playerNum == 4)
+			{
+				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+			}
+			else
+			{
+				Debug.Log("Did not specify a player for hit reaction...");
+			}
+		}
+	}
 
-			HUDScript.GetComponentInChildren<UIEvent>().eventText.text = eventText;
+	public void ShowEventBox(string buttonLetter = "X", int numTimesToPress = 10)
+	{
+		if (HUDScript != null)
+		{
+			HUDScript.eventObject.SetActive(true);
+			HUDScript.eventObject.GetComponent<UIEvent>().eventText.text = "Press " + buttonLetter + "\n" + numTimesToPress + " times!";
 			ShowButtonPrompt(buttonLetter);
+			UpdateEventCount(0);
+		}
+	}
+
+	public void HideEventBox()
+	{
+		HUDScript.eventObject.SetActive(false);
+	}
+
+	public void UpdateEventCount(int countNum)
+	{
+		if (HUDScript != null)
+		{
+			HUDScript.eventObject.GetComponent<UIEvent>().countText.text = countNum.ToString();
 		}
 	}
 
@@ -116,25 +169,37 @@ public class UIManager : MonoBehaviour {
 		{
 			HideButtonPrompt();
 
-			if (button == "a")
+			if (button == "A")
 			{
 				// Show the X button
-				HUDScript.GetComponentInChildren<UIEvent>().buttonImageA.SetActive(false);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageA.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageA.animation.Play("buttonPulse");
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageA2.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageA2.animation.Play("buttonPulse");
 			}
-			else if (button == "b")
+			else if (button == "B")
 			{
 				// Show the A button
-				HUDScript.GetComponentInChildren<UIEvent>().buttonImageB.SetActive(false);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageB.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageB.animation.Play("buttonPulse");
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageB2.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageB2.animation.Play("buttonPulse");
 			}
-			else if (button == "x")
+			else if (button == "X")
 			{
 				// Show the B button
-				HUDScript.GetComponentInChildren<UIEvent>().buttonImageX.SetActive(false);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageX.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageX.animation.Play("buttonPulse");
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageX2.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageX2.animation.Play("buttonPulse");
 			}
-			else if (button == "y")
+			else if (button == "Y")
 			{
 				// Show the Y button
-				HUDScript.GetComponentInChildren<UIEvent>().buttonImageY.SetActive(false);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageY.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageY.animation.Play("buttonPulse");
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageY2.SetActive(true);
+				HUDScript.eventObject.GetComponent<UIEvent>().buttonImageY2.animation.Play("buttonPulse");
 			}
 			else
 			{
@@ -147,10 +212,15 @@ public class UIManager : MonoBehaviour {
 	{
 		if (HUDScript != null)
 		{
-			HUDScript.GetComponentInChildren<UIEvent>().buttonImageA.SetActive(false);
-			HUDScript.GetComponentInChildren<UIEvent>().buttonImageB.SetActive(false);
-			HUDScript.GetComponentInChildren<UIEvent>().buttonImageX.SetActive(false);
-			HUDScript.GetComponentInChildren<UIEvent>().buttonImageY.SetActive(false);
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageA.SetActive(false);
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageB.SetActive(false);
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageX.SetActive(false);
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageY.SetActive(false);
+
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageA2.SetActive(false);
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageB2.SetActive(false);
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageX2.SetActive(false);
+			HUDScript.eventObject.GetComponent<UIEvent>().buttonImageY2.SetActive(false);
 		}
 	}
 	
@@ -178,7 +248,7 @@ public class UIManager : MonoBehaviour {
 
 	public IEnumerator WaitToLoadHUD()
 	{
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(0.01f);
 		LoadHUD();
 	}
 }
