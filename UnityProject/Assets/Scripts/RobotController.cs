@@ -28,28 +28,28 @@ public class RobotController : MonoBehaviour {
 	void Update ()
 	{
 		leftThrusterAssignment [0].thrust_1 = InputManager.pl_Controller.leftTrigger;
-		leftThrusterAssignment [0].thrust_2 = InputManager.pl_Controller.leftTrigger;
+		leftThrusterAssignment [0].thrust_2 = InputManager.pl_Controller.rightTrigger;
 		//rightThrusterAssignment [0].thrust_2 = InputManager.pl_Controller.rightTrigger;
 		leftThrusterAssignment[0].leftTriggerIndex = 0;
 		leftThrusterAssignment[0].rightTriggerIndex = 0;
 		//rightThrusterAssignment[0].rightTriggerIndex = 0;
 
 		leftThrusterAssignment [1].thrust_1 = InputManager.p2_Controller.leftTrigger;
-		leftThrusterAssignment [1].thrust_2 = InputManager.p2_Controller.leftTrigger;
+		leftThrusterAssignment [1].thrust_2 = InputManager.p2_Controller.rightTrigger;
 		//rightThrusterAssignment [1].thrust_2 = InputManager.p2_Controller.rightTrigger;
 		leftThrusterAssignment[1].leftTriggerIndex = 1;
 		leftThrusterAssignment[1].rightTriggerIndex = 1;
 		//rightThrusterAssignment[1].rightTriggerIndex = 1;
 
 		leftThrusterAssignment [2].thrust_1 = InputManager.p3_Controller.leftTrigger;
-		leftThrusterAssignment [2].thrust_2 = InputManager.p3_Controller.leftTrigger;
+		leftThrusterAssignment [2].thrust_2 = InputManager.p3_Controller.rightTrigger;
 		//rightThrusterAssignment [2].thrust_2 = InputManager.p3_Controller.rightTrigger;
 		leftThrusterAssignment[2].leftTriggerIndex = 2;
 		leftThrusterAssignment[2].rightTriggerIndex = 2;
 		//rightThrusterAssignment[2].rightTriggerIndex = 2;
 
 		leftThrusterAssignment [3].thrust_1 = InputManager.p4_Controller.leftTrigger;
-		leftThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.leftTrigger;
+		leftThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.rightTrigger;
 		//rightThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.rightTrigger;
 		leftThrusterAssignment[3].leftTriggerIndex = 3;
 		leftThrusterAssignment[3].rightTriggerIndex = 3;
@@ -73,9 +73,9 @@ public class RobotController : MonoBehaviour {
 		rightThrusterAssignment.Add (leftThruster);
 		rightThrusterAssignment.Add (rightThruster);
 
-		ShuffleThrusterList (leftThrusterAssignment, rightThrusterAssignment);
-		ShuffleThrusterList (rightThrusterAssignment, leftThrusterAssignment);
-		MatchRobotColors();
+		//ShuffleThrusterList (leftThrusterAssignment, rightThrusterAssignment);
+		//ShuffleThrusterList (rightThrusterAssignment, leftThrusterAssignment);
+		//MatchRobotColors();
 
 		//StartCoroutine(UpdatePlayerThrusterColors());
 	}
@@ -164,12 +164,12 @@ public class RobotController : MonoBehaviour {
 	
 	public void ClampVelocity()
 	{
-		if (rigidbody.velocity.magnitude > 4f)
+		if (rigidbody.velocity.magnitude > 5f)
 		{
 			Vector3 normalizedVelocity = rigidbody.velocity;
 			normalizedVelocity.Normalize();
 			
-			rigidbody.velocity = normalizedVelocity * 4f;
+			rigidbody.velocity = normalizedVelocity * 5f;
 		}
 	}
 	
