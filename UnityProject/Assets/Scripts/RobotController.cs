@@ -142,18 +142,18 @@ public class RobotController : MonoBehaviour {
 	
 	public void ClampVelocity()
 	{
-		if (rigidbody.velocity.magnitude > 2.75f)
+		if (rigidbody.velocity.magnitude > 4f)
 		{
 			Vector3 normalizedVelocity = rigidbody.velocity;
 			normalizedVelocity.Normalize();
 			
-			rigidbody.velocity = normalizedVelocity * 2.75f;
+			rigidbody.velocity = normalizedVelocity * 5f;
 		}
 	}
 	
 	public void HandleRotation()
 	{
-		baseRotation.Rotate(Time.deltaTime * 5f, 0, 0);
+		baseRotation.Rotate(Time.deltaTime * 10f, 0, 0);
 	}
 }
 

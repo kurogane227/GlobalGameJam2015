@@ -45,11 +45,11 @@ public class Thruster : MonoBehaviour {
 
 			if (desiredThrust >= previousThrust)
 			{
-				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 1.75f);
+				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 2.5f);
 			}
 			else
 			{
-				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 2.25f);
+				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 3f);
 			}
 
 			//currentPowerPercentage = actualThrust / 2f;
@@ -57,15 +57,19 @@ public class Thruster : MonoBehaviour {
 			
 			
 			//float particleScale = (desiredThrust / 4);
-			Transform particleTransform = GetComponentInChildren<SphereCollider>().transform;
+			//Transform particleTransform = GetComponentInChildren<SphereCollider>().transform;
 			
-			UpdateFXScale(particleTransform);
+			//UpdateFXScale(particleTransform);
 			// 1 * 0.002
 
 			//print (thrust_1 + "   " + thrust_2 + "    " + totalThrust);
 			//GetComponentInParent<Rigidbody> ().AddForceAtPosition (new Vector3 (0, 0, totalThrust), this.transform.position);
 			previousThrust = actualThrust;
 		}
+		
+		Transform particleTransform = GetComponentInChildren<SphereCollider>().transform;
+		
+		UpdateFXScale(particleTransform);
 		transform.parent.parent.parent.parent.GetComponentInParent<Rigidbody> ().AddForce (-this.transform.forward * previousThrust * 10f);
 
 
@@ -73,19 +77,24 @@ public class Thruster : MonoBehaviour {
 	
 	public void UpdateFXScale(Transform particleTransform)
 	{
-		float desiredParticleScale = (desiredThrust / 3.75f);
+		float desiredParticleScale = (desiredThrust / 2);
+		desiredParticleScale *= 0.4f;
 		
 		if (particleTransform.localScale.x < desiredParticleScale)
 		{
 			float newScale = particleTransform.localScale.x + (Time.deltaTime * particleGrowthRate);
-			newScale = Mathf.Clamp(newScale, 0f, maxParticleScale);
+			newScale = Mathf.Clamp(newScale, 0f, desiredParticleScale);
+			
 			particleTransform.localScale = new Vector3(newScale, newScale, newScale);
+			//particleTransform.localScale = new Vector3(newScale, newScale, newScale);
+			GetComponentInChildren<Light>().range = newScale * 25f;
 		}
 		else if (particleTransform.localScale.x > desiredParticleScale)
 		{
 			float newScale = particleTransform.localScale.x - (Time.deltaTime * particleGrowthRate);
-			newScale = Mathf.Clamp(newScale, 0f, maxParticleScale); 
+			newScale = Mathf.Clamp(newScale, desiredParticleScale, maxParticleScale); 
 			particleTransform.localScale = new Vector3(newScale, newScale, newScale);
+			GetComponentInChildren<Light>().range = newScale * 25f;
 		}
 	}
 }
