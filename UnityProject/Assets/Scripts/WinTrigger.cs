@@ -8,6 +8,5 @@ public class WinTrigger : MonoBehaviour {
 			UIManager.Instance.LoadResults();
 			AudioSource.PlayClipAtPoint( SoundManager.Instance.PlayFanfare);
 	}
-
-
+	}
 }
