@@ -10,9 +10,6 @@ public class GameManager : MonoBehaviour
 
 	private int energy;
 
-	public int groupScore;
-	public int groupHealth;
-	
 	// Use this for initialization
 	void Start () 
 	{

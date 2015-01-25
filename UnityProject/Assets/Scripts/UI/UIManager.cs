@@ -431,15 +431,6 @@ public class UIManager : MonoBehaviour {
 	//private bool eventCountWentOver = false;
 	//private bool startEventProcessor = true;
 	
-	public string player1LeftThrusterColor = "blue";
-	public string player1RightThrusterColor = "blue";
-	public string player2LeftThrusterColor = "blue";
-	public string player2RightThrusterColor = "blue";
-	public string player3LeftThrusterColor = "blue";
-	public string player3RightThrusterColor = "blue";
-	public string player4LeftThrusterColor = "blue";
-	public string player4RightThrusterColor = "blue";
-	
 	public void LoadHUD()
 	{
 		// Load the main menu UI
