@@ -14,11 +14,22 @@ public class Enemy : MonoBehaviour
 	public GameObject GameMain;
 
 	private NavMeshAgent nav;
-	private Transform player;
+	private GameObject player;
 	private float chaseTimer;
 	private float patrolTimer;
 	private int wayPointIndex;
 
+	static bool disableThrusters = false;
+	
+	public enum enemyStates
+	{
+		PATROL,
+		ENGAGE,
+		DEAD,
+		EXIT,
+	}
+	
+	public enemyStates currentState;
 	//public int promptOne;
 	//public int promptTwo;
 	//public int promptThree;
@@ -27,12 +38,11 @@ public class Enemy : MonoBehaviour
 	 string[] promptButtons;
 	 int[] promptScore;
 	 bool[] promptSuccess;
-	int promptThresholdBuffer;
+	 
+	public int promptThresholdBuffer;
 	
 	public int promptIndex;
 	
-	public int promptTimer;
-
 	[SerializeField]
 	private int easyMin;
 	[SerializeField]
@@ -46,14 +56,12 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private int hardMax;
 
-	private float engageTimer;
-	private float engageTimeLimit;
-	
-	private int QTE_Success;
-	private int QTE_Failure;
-	
+	public float engageTimer;
+	public float engageTimeLimit;
+
 	private UIManager UI;
 	private GameManager gameMain;
+	private GameObject _Persistent;
 	
 	public enum difficultyStates 
 	{
@@ -71,24 +79,24 @@ public class Enemy : MonoBehaviour
 		"B",
 		"X",
 		"Y",
-		"LSL",
-		"LSR",
-		"RSL",
-		"RSR",
 	};
 	
 	public bool dead = false;
 	
 	float timer;
 	
-	public Rigidbody playerRB;
+	//public Rigidbody playerRB;
 	
 	public	difficultyStates difficulty;
+	
+	private bool engageOver = false;
 	// Use this for initialization
 	void Start () 
 	{
-		UI = GameMain.GetComponent<UIManager>();
-		gameMain = GameMain.GetComponent<GameManager>();
+		player = GameObject.FindWithTag("Player");
+		_Persistent = GameObject.Find ("_SCRIPTS");
+		UI = _Persistent.GetComponent<UIManager>();
+		gameMain = _Persistent.GetComponent<GameManager>();
 		
 	}
 
@@ -96,6 +104,7 @@ public class Enemy : MonoBehaviour
 	{
 		nav = GetComponent<NavMeshAgent> ();
 		wayPointIndex = Random.Range(0, patrolWayPoints.Length);
+		currentState = enemyStates.PATROL;
 		//player = GameObject.FindGameObjectWithTag();
 	}
 	// Update is called once per frame
@@ -104,26 +113,64 @@ public class Enemy : MonoBehaviour
 		timer += Time.deltaTime;
 		//if(timer > 1)
 		{
-			Debug.Log(playerRB.rigidbody.velocity.magnitude*playerRB.rigidbody.velocity.magnitude);
+			//Debug.Log(playerRB.rigidbody.velocity.magnitude*playerRB.rigidbody.velocity.magnitude);
 			timer = 0;
 		}
-		if (dead)
+		if (dead && currentState == enemyStates.DEAD)
 			{
 			
 			}
-		else if(enemyTrigger.engage)
-			Engage ();
-		else if (enemyTrigger.exit)
+		else if (engageOver && currentState == enemyStates.EXIT)
 			Exit ();
-		else
+		else if(enemyTrigger.engage && currentState == enemyStates.ENGAGE)
+			Engage ();
+		else if(currentState == enemyStates.PATROL)
 			Patrol ();
 	}
 	
 	void Engage()
 	{
+		engageTimer+= Time.deltaTime;
 		nav.Stop ();
 		if(engageTimer >= 0)
 			ProcessButtons();
+		if(engageTimer > engageTimeLimit)
+		{
+			currentState = enemyStates.EXIT;
+			engageOver = true;
+			disableThrusters = false;
+			engageTimer = -1;
+			enemyTrigger.engage = false;
+			int engageSuccess = 0;
+			int engageFailure = 0;
+			
+			//FIX LATER FOR MULTIPROMPTS
+			//for(int i = 0; i < promptThresholds.Length; i++)
+			for(int i = 0; i < 1; i++)
+			{
+				if(promptSuccess[i])
+				{
+					engageSuccess++;
+				}
+				else
+				{
+					engageFailure++;
+				}
+				if(engageSuccess >=  engageFailure)
+				{
+					//engage success
+					gameMain.groupScore++;
+					Debug.Log ("EVENT SUCCESS");
+				}
+				else
+				{
+					//engage failure
+					gameMain.groupHealth--;
+					Debug.Log ("EVENT FAILED");
+				}
+			}
+			UI.HideEventBox();
+		}
 	}
 
 	void Chase ()
@@ -159,15 +206,17 @@ public class Enemy : MonoBehaviour
 
 	public void EngageSet()
 	{
+		disableThrusters = true;
+		currentState = enemyStates.ENGAGE;
 		promptThresholds = new int[3];
 		promptButtons = new string[3];
 		promptSuccess = new bool[3];
+		promptScore = new int[3];
 		promptIndex = 0;
 		
-		QTE_Success = 0;
-		QTE_Failure = 0;
+		engageOver = false;
 		
-		int holdCheck = Random.Range(0,2);
+		//int holdCheck = Random.Range(0,2);
 
 		promptThresholds[promptIndex] = PromptRange();
 		promptButtons[promptIndex] = SetButtonPrompt();
@@ -188,6 +237,11 @@ public class Enemy : MonoBehaviour
 			promptThresholds[promptIndex] = PromptRange();
 		}
 		promptIndex = 0;
+		
+		//FIX LATER IF USING MULTIPROMPTS
+		Debug.Log ("EVENT: " + promptButtons[0] + " " + promptThresholds[0]);
+		UI.ShowEventBox(promptThresholds[0], promptButtons[0]);
+		
 	}
 	
 	int PromptRange()
@@ -423,21 +477,23 @@ public class Enemy : MonoBehaviour
 	
 		if(engageTimer <= engageTimeLimit)
 		{
-			for(int j = 0; j < promptThresholds.Length; j++)
+		//FIX LATER IF USING MULTIPLE PROMPTS
+			for(int j = 0; j < 1; j++)
+			//for(int j = 0; j < promptThresholds.Length; j++)
 			{
 				if(button == promptButtons[j])
 					wrongButton = false;
 			}
-			for(int i = 0; i < promptThresholds.Length; i++)
+			//FIX LATER IF USING MULTIPLE PROMPTS
+			//for(int i = 0; i < promptThresholds.Length; i++)
+			for(int i = 0; i < 1; i++)
 			{
 				promptScore[i]++;
-				UI.UpdateEventCount(promptScore[i]);
 				if(promptThresholds[i] > 0)
 				{
 					if(promptScore[i] < promptThresholds[i])
 					{
 						//UI is unsatisfied
-						UI.ShowEventBox(promptThresholds[i], promptButtons[i]);
 						promptSuccess[i] = false;
 					}
 					else if (promptScore[i] >= promptThresholds[i] && promptScore[i] < promptThresholds[i] + promptThresholdBuffer)
@@ -448,9 +504,12 @@ public class Enemy : MonoBehaviour
 					else
 					{
 						//penalize player
+						engageTimer = engageTimeLimit+1;
 						promptSuccess[i] = false;
 						SubtractScore(pNum);
 					}
+					UI.UpdateEventCount(promptScore[i]);
+					
 				}
 				//for hold buttons if time permitted
 				/*
@@ -487,31 +546,6 @@ public class Enemy : MonoBehaviour
 		//time is up
 		else
 		{
-			engageTimer = -1;
-			int engageSuccess = 0;
-			int engageFailure = 0;
-			for(int i = 0; i < promptThresholds.Length; i++)
-			{
-				if(promptSuccess[i])
-				{
-					engageSuccess++;
-				}
-				else
-				{
-					engageFailure++;
-				}
-				if(engageSuccess >=  engageFailure)
-				{
-					//engage success
-					gameMain.groupScore++;
-				}
-				else
-				{
-					//engage failure
-					gameMain.groupHealth--;
-				}
-			}
-			UI.HideEventBox();
 		}
 	}
 	

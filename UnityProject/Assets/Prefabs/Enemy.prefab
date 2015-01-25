@@ -243,19 +243,20 @@ MonoBehaviour:
   enemyTrigger: {fileID: 11476216}
   patrolWayPoints: []
   GameMain: {fileID: 0}
+  currentState: 0
+  promptThresholdBuffer: 5
   promptIndex: 0
-  promptTimer: 0
   easyMin: 2
   easyMax: 5
   medMin: 5
   medMax: 10
   hardMin: 10
   hardMax: 15
-  UI: {fileID: 0}
+  engageTimer: 0
+  engageTimeLimit: 5
   deathForce: 800
   deathRadius: 100
   dead: 0
-  playerRB: {fileID: 0}
   difficulty: 2
 --- !u!135 &13576216
 SphereCollider:

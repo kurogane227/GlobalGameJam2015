@@ -27,17 +27,21 @@ public class EnemyTrigger : MonoBehaviour
 	{
 		if (other == player.collider && !enemy.dead) 
 		{
-			if(other.rigidbody.velocity.magnitude*other.rigidbody.velocity.magnitude > crashThreshold)
+			//if(other.rigidbody.velocity.magnitude*other.rigidbody.velocity.magnitude > crashThreshold && enemy.currentState == Enemy.enemyStates.PATROL)
 			{
 			Debug.Log("KABOOM");
-				enemy.dead = true;
-				enemy.Die(other.transform.position);
+				//enemy.dead = true;
+				//enemy.Die(other.transform.position);
+				//enemy.currentState = Enemy.enemyStates.DEAD
 			}
-			else
+			//else
 			{
-				engage = true;
-				enemy.EngageSet();
-				player.rigidbody.velocity = Vector3.zero;
+				if(enemy.currentState == Enemy.enemyStates.PATROL)
+				{
+					engage = true;
+					enemy.EngageSet();
+					player.rigidbody.velocity = Vector3.zero;
+				}
 			}
 			
 		}
