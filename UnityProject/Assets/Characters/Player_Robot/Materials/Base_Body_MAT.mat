@@ -17,21 +17,21 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: b66bceaf0cc0ace4e9bdc92f14bba709, type: 3}
+          m_Texture: {fileID: 2800000, guid: 8a7caca080c8f6e48b1a74f851163dea, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _Normal
         second:
-          m_Texture: {fileID: 2800000, guid: 839587738573a48e28a59f1905941428, type: 3}
+          m_Texture: {fileID: 2800000, guid: b4de32b0f7fb34140966297954bc4d8f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _Specular
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 8a7caca080c8f6e48b1a74f851163dea, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:

@@ -22,6 +22,7 @@ public class PhysicsObject : MonoBehaviour {
 		if(other.gameObject.tag == "Player"){
 			rigidbody.useGravity = true;
 			myCollider.enabled = true;
+			UIManager.Instance.PlayAllHitReaction();
 		}
 	}
 }
