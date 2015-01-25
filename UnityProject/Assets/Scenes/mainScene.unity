@@ -168,6 +168,7 @@ GameObject:
   - 4: {fileID: 1854843171}
   - 114: {fileID: 1854843170}
   - 114: {fileID: 1854843172}
+  - 82: {fileID: 1854843173}
   m_Layer: 0
   m_Name: _SCRIPTS
   m_TagString: Untagged
@@ -237,15 +238,15 @@ MonoBehaviour:
   ambientRocketBoosterMedium: {fileID: 0}
   ambientRocketBoosterHeavy: {fileID: 0}
   ambientRocketBoosterSuperHeavy: {fileID: 0}
-  collisionBounce1: {fileID: 0}
-  collisionBounce2: {fileID: 0}
-  collisionBounce3: {fileID: 0}
-  collisionRough1: {fileID: 0}
-  collisionRough2: {fileID: 0}
-  collisionRough3: {fileID: 0}
-  collisionSmack1: {fileID: 0}
-  collisionSmack2: {fileID: 0}
-  collisionSmack3: {fileID: 0}
+  collisionBounce1: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
+  collisionBounce2: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
+  collisionBounce3: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
+  collisionRough1: {fileID: 8300000, guid: 0959cd1a67678174980f175cd7dd834a, type: 3}
+  collisionRough2: {fileID: 8300000, guid: 7188a8a0254d45f43b678ea82a43e46c, type: 3}
+  collisionRough3: {fileID: 8300000, guid: 7188a8a0254d45f43b678ea82a43e46c, type: 3}
+  collisionSmack1: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
+  collisionSmack2: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
+  collisionSmack3: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
   shortCircuit: {fileID: 0}
   fanfare: {fileID: 0}
   boo: {fileID: 0}
@@ -253,3 +254,65 @@ MonoBehaviour:
   player2Scream: {fileID: 0}
   player3Scream: {fileID: 0}
   player4Scream: {fileID: 0}
+  ambientRollerCoaster: {fileID: 8300000, guid: 6430b305203b68f4fb5a34e10af0e702,
+    type: 3}
+  ambientAudio: {fileID: 8300000, guid: 66b0fc801473ee14d8732a82b1ced0d0, type: 3}
+  audioToPlay: {fileID: 1854843173}
+--- !u!82 &1854843173
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1854843169}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 57066ba40607cbb4a911f582e608a128, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2

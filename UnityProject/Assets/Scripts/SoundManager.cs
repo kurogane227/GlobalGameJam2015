@@ -56,6 +56,8 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip ambientRollerCoaster = null;
 	public AudioClip ambientAudio = null;
 
+	public AudioSource audioToPlay = null;
+
 	// Use this for initialization
 	void Awake () {
 		if (instance != null && instance != this)
@@ -69,9 +71,53 @@ public class SoundManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad(this.gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void PlayBouncyClip(){
+		int choice = Random.Range(1, 4);
+
+		switch (choice){
+		case 1:
+			audioToPlay.PlayOneShot(collisionBounce1);
+			
+			break;
+		case 2:
+			audioToPlay.PlayOneShot(collisionBounce2);
+			break;
+		default:
+			audioToPlay.PlayOneShot(collisionBounce3);
+			break;
+		}
+	}
+
+	public void PlayRoughClip(){
+		int choice = Random.Range(1, 4);
+		
+		switch (choice){
+		case 1:
+			audioToPlay.PlayOneShot(collisionRough1);
+			break;
+		case 2:
+			audioToPlay.PlayOneShot(collisionRough2);
+			break;
+		default:
+			audioToPlay.PlayOneShot(collisionRough3);
+			break;
+		}
+	}
+
+	public void PlaySmackClip(){
+		int choice = Random.Range(1, 4);
+		
+		switch (choice){
+		case 1:
+			audioToPlay.PlayOneShot(collisionSmack1);
+			break;
+		case 2:
+			audioToPlay.PlayOneShot(collisionSmack2);
+			break;
+		default:
+			audioToPlay.PlayOneShot(collisionSmack3);
+			break;
+		}
 	}
 }
