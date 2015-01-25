@@ -3,6 +3,10 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 	
+	private float doubleSpeed = 0.003f;
+	private float singleSpeed = 0.0015f;
+	private float brakeSpeed = -0.0015f;
+	
 	private static UIManager instance = null;
 	public static UIManager Instance
 	{
@@ -35,29 +39,63 @@ public class UIManager : MonoBehaviour {
 		//Input handling for UI
 		if (HUDScript != null)
 		{
+			//==========================|
 			// DEBUG CONTROLS
-			if (Input.GetKeyDown(KeyCode.E) && HUDScript != null)
-			{
-				ShowEventBox("B", 15);
-			}
+			//==========================|
+//			if (Input.GetKeyDown(KeyCode.E) && HUDScript != null)
+//			{
+//				ShowEventBox("B", 15);
+//			}
+//			
+//			if (Input.GetKeyDown(KeyCode.R) && HUDScript != null)
+//			{
+//				LoadResults();
+//			}
+//
+//			if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) && HUDScript != null) // Both triggers held down
+//			{
+//				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+//				{
+//					UpdatePowerBar(1, doubleSpeed);
+//				}
+//			}
+//			else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) && HUDScript != null) // one trigger is held down
+//			{
+//				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+//				{
+//					UpdatePowerBar(1, singleSpeed);
+//				}
+//			}
+//			else
+//			{
+//				if (HUDScript != null)
+//				{
+//					if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
+//					{
+//						UpdatePowerBar(1, brakeSpeed);
+//					}
+//				}
+//			}
 			
-			if (Input.GetKeyDown(KeyCode.R) && HUDScript != null)
-			{
-				LoadResults();
-			}
-
-			if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) && HUDScript != null) // Both triggers held down
+			//==================================================================================================|
+			// REAL CONTROLS
+			//==================================================================================================|
+			
+			//==========================|
+			// PLAYER 1
+			//==========================|
+			if (InputManager.pl_Controller.leftTrigger > 0.0f && InputManager.pl_Controller.rightTrigger > 0.0f && HUDScript != null) // Both triggers held down
 			{
 				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
 				{
-					UpdatePowerBar(1, 0.003f);
+					UpdatePowerBar(1, doubleSpeed);
 				}
 			}
-			else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) && HUDScript != null) // one trigger is held down
+			else if (InputManager.pl_Controller.leftTrigger > 0.0f || InputManager.pl_Controller.rightTrigger > 0.0f && HUDScript != null) // one trigger is held down
 			{
 				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
 				{
-					UpdatePowerBar(1, 0.0015f);
+					UpdatePowerBar(1, singleSpeed);
 				}
 			}
 			else
@@ -66,12 +104,94 @@ public class UIManager : MonoBehaviour {
 				{
 					if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
 					{
-						UpdatePowerBar(1, -0.0015f);
+						UpdatePowerBar(1, brakeSpeed);
 					}
 				}
 			}
 			
-			// TODO: Add the rest of the players' inputs here to hook them up to the UI
+			//==========================|
+			// PLAYER 2
+			//==========================|
+			if (InputManager.p2_Controller.leftTrigger > 0.0f && InputManager.p2_Controller.rightTrigger > 0.0f && HUDScript != null) // Both triggers held down
+			{
+				if (HUDScript.player2HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(2, doubleSpeed);
+				}
+			}
+			else if (InputManager.p2_Controller.leftTrigger > 0.0f || InputManager.p2_Controller.rightTrigger > 0.0f && HUDScript != null) // one trigger is held down
+			{
+				if (HUDScript.player2HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(2, singleSpeed);
+				}
+			}
+			else
+			{
+				if (HUDScript != null)
+				{
+					if (HUDScript.player2HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
+					{
+						UpdatePowerBar(2, brakeSpeed);
+					}
+				}
+			}
+			
+			//==========================|
+			// PLAYER 3
+			//==========================|
+			if (InputManager.p3_Controller.leftTrigger > 0.0f && InputManager.p3_Controller.rightTrigger > 0.0f && HUDScript != null) // Both triggers held down
+			{
+				if (HUDScript.player3HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(3, doubleSpeed);
+				}
+			}
+			else if (InputManager.p3_Controller.leftTrigger > 0.0f || InputManager.p3_Controller.rightTrigger > 0.0f && HUDScript != null) // one trigger is held down
+			{
+				if (HUDScript.player3HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(3, singleSpeed);
+				}
+			}
+			else
+			{
+				if (HUDScript != null)
+				{
+					if (HUDScript.player3HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
+					{
+						UpdatePowerBar(3, brakeSpeed);
+					}
+				}
+			}
+			
+			//==========================|
+			// PLAYER 4
+			//==========================|
+			if (InputManager.p4_Controller.leftTrigger > 0.0f && InputManager.p4_Controller.rightTrigger > 0.0f && HUDScript != null) // Both triggers held down
+			{
+				if (HUDScript.player4HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(4, doubleSpeed);
+				}
+			}
+			else if (InputManager.p4_Controller.leftTrigger > 0.0f || InputManager.p4_Controller.rightTrigger > 0.0f && HUDScript != null) // one trigger is held down
+			{
+				if (HUDScript.player4HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(4, singleSpeed);
+				}
+			}
+			else
+			{
+				if (HUDScript != null)
+				{
+					if (HUDScript.player4HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
+					{
+						UpdatePowerBar(4, brakeSpeed);
+					}
+				}
+			}
 		}
 	}
 
