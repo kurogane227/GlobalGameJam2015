@@ -29,8 +29,6 @@ public class UIPlayerHUD : MonoBehaviour {
 		powerFill.fillAmount = 0.0f;
 		overheatObject.SetActive(false);
 		alienALTPicture.SetActive(false);
-		
-		//SetNewTriggerPanels("blue", "red");
 	}
 	
 	// Update is called once per frame
@@ -110,61 +108,61 @@ public class UIPlayerHUD : MonoBehaviour {
 	{
 		// Front = Red, Right = Green, Back = Blue, Left = Yellow
 	
-		HideAllTriggerPanels();
-		
-		if (leftTriggerColor == "green")
-		{
-			leftTriggerGreen.SetActive(true);
-		}
-		else if (leftTriggerColor == "red")
-		{
-			leftTriggerRed.SetActive(true);
-		}
-		else if (leftTriggerColor == "blue")
-		{
-			leftTriggerBlue.SetActive(true);
-		}
-		else if (leftTriggerColor == "yellow")
-		{
-			leftTriggerYellow.SetActive(true);
-		}
-		else
-		{
-			Debug.Log("INCORRECT COLOR GIVEN TO LEFT TRIGGER");
-		}
-		
-		if (rightTriggerColor == "green")
-		{
-			rightTriggerGreen.SetActive(true);
-		}
-		else if (rightTriggerColor == "red")
-		{
-			rightTriggerRed.SetActive(true);
-		}
-		else if (rightTriggerColor == "blue")
-		{
-			rightTriggerBlue.SetActive(true);
-		}
-		else if (rightTriggerColor == "yellow")
-		{
-			rightTriggerYellow.SetActive(true);
-		}
-		else
-		{
-			Debug.Log("INCORRECT COLOR GIVEN TO RIGHT TRIGGER");
-		}
+//		HideAllTriggerPanels();
+//		
+//		if (leftTriggerColor == "green")
+//		{
+//			leftTriggerGreen.SetActive(true);
+//		}
+//		else if (leftTriggerColor == "red")
+//		{
+//			leftTriggerRed.SetActive(true);
+//		}
+//		else if (leftTriggerColor == "blue")
+//		{
+//			leftTriggerBlue.SetActive(true);
+//		}
+//		else if (leftTriggerColor == "yellow")
+//		{
+//			leftTriggerYellow.SetActive(true);
+//		}
+//		else
+//		{
+//			Debug.Log("INCORRECT COLOR GIVEN TO LEFT TRIGGER");
+//		}
+//		
+//		if (rightTriggerColor == "green")
+//		{
+//			rightTriggerGreen.SetActive(true);
+//		}
+//		else if (rightTriggerColor == "red")
+//		{
+//			rightTriggerRed.SetActive(true);
+//		}
+//		else if (rightTriggerColor == "blue")
+//		{
+//			rightTriggerBlue.SetActive(true);
+//		}
+//		else if (rightTriggerColor == "yellow")
+//		{
+//			rightTriggerYellow.SetActive(true);
+//		}
+//		else
+//		{
+//			Debug.Log("INCORRECT COLOR GIVEN TO RIGHT TRIGGER");
+//		}
 	}
 	
 	public void HideAllTriggerPanels()
 	{
-		leftTriggerGreen.SetActive(false);
-		leftTriggerRed.SetActive(false);
-		leftTriggerBlue.SetActive(false);
-		leftTriggerYellow.SetActive(false);
-		
-		rightTriggerGreen.SetActive(false);
-		rightTriggerRed.SetActive(false);
-		rightTriggerBlue.SetActive(false);
-		rightTriggerYellow.SetActive(false);
+//		leftTriggerGreen.SetActive(false);
+//		leftTriggerRed.SetActive(false);
+//		leftTriggerBlue.SetActive(false);
+//		leftTriggerYellow.SetActive(false);
+//		
+//		rightTriggerGreen.SetActive(false);
+//		rightTriggerRed.SetActive(false);
+//		rightTriggerBlue.SetActive(false);
+//		rightTriggerYellow.SetActive(false);
 	}
 }
