@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Front_Panel_MAT
+  m_Name: Eyes_MAT
   m_Shader: {fileID: 4800000, guid: 7c3868f4c0ae4f64f947d1bd0ff744a9, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 34c9fcec00ce63b49a6725d4eadead19, type: 3}
+          m_Texture: {fileID: 2800000, guid: 8a7caca080c8f6e48b1a74f851163dea, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -38,8 +38,8 @@ Material:
         first:
           name: _ScrollingTex
         second:
-          m_Texture: {fileID: 2800000, guid: e674a13c6227c1546b8c5a9684f641d7, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 34c9fcec00ce63b49a6725d4eadead19, type: 3}
+          m_Scale: {x: 5, y: 5}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
@@ -49,7 +49,7 @@ Material:
       data:
         first:
           name: _ScrollSpeed_V
-        second: 10
+        second: 5
       data:
         first:
           name: _ScrollSpeed_U
@@ -58,8 +58,8 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .772058845, g: .238429934, b: .238429934, a: 1}
+        second: {r: .608996511, g: .789977372, b: .941176474, a: 1}
       data:
         first:
           name: _ScrollTexColor
-        second: {r: .514705896, g: .514705896, b: .514705896, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
