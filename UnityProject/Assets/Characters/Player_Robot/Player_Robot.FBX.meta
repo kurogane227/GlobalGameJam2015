@@ -69,6 +69,8 @@ ModelImporter:
     100126: Jet_04
     100128: Player_Base
     100130: Thrust_Pivot
+    100132: L_eyelid
+    100134: R_eyelid
     400000: CATRigHub001
     400002: CATRigHub002
     400004: CATRigHub002Bone001
@@ -135,6 +137,8 @@ ModelImporter:
     400126: Jet_04
     400128: Player_Base
     400130: Thrust_Pivot
+    400132: L_eyelid
+    400134: R_eyelid
     4300000: Player_Robot
     7400000: Take 001
     9500000: //RootNode
