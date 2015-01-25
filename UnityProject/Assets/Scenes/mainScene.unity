@@ -197,6 +197,8 @@ MonoBehaviour:
   disablePlayer2Input: 0
   disablePlayer3Input: 0
   disablePlayer4Input: 0
+  isEventActive: 0
+  eventButtonLetter: 
   ResultsObject: {fileID: 0}
   ResultsScript: {fileID: 0}
 --- !u!4 &1854843171
@@ -267,7 +269,7 @@ AudioSource:
   m_GameObject: {fileID: 1854843169}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 57066ba40607cbb4a911f582e608a128, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
