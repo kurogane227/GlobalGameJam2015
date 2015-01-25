@@ -45,11 +45,11 @@ public class Thruster : MonoBehaviour {
 
 			if (desiredThrust >= previousThrust)
 			{
-				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 1f);
+				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 1.75f);
 			}
 			else
 			{
-				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 1.5f);
+				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 2.25f);
 			}
 
 			//currentPowerPercentage = actualThrust / 2f;
@@ -66,7 +66,7 @@ public class Thruster : MonoBehaviour {
 			//GetComponentInParent<Rigidbody> ().AddForceAtPosition (new Vector3 (0, 0, totalThrust), this.transform.position);
 			previousThrust = actualThrust;
 		}
-		transform.parent.parent.parent.parent.GetComponentInParent<Rigidbody> ().AddForce (-this.transform.forward * previousThrust * 7.5f);
+		transform.parent.parent.parent.parent.GetComponentInParent<Rigidbody> ().AddForce (-this.transform.forward * previousThrust * 10f);
 
 
 	}

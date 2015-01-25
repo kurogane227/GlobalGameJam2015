@@ -142,12 +142,12 @@ public class RobotController : MonoBehaviour {
 	
 	public void ClampVelocity()
 	{
-		if (rigidbody.velocity.magnitude > 2.5f)
+		if (rigidbody.velocity.magnitude > 2.75f)
 		{
 			Vector3 normalizedVelocity = rigidbody.velocity;
 			normalizedVelocity.Normalize();
 			
-			rigidbody.velocity = normalizedVelocity * 2.5f;
+			rigidbody.velocity = normalizedVelocity * 2.75f;
 		}
 	}
 	
