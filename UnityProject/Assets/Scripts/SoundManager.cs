@@ -53,6 +53,9 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip player3Scream = null;
 	public AudioClip player4Scream = null;
 
+	public AudioClip ambientRollerCoaster = null;
+	public AudioClip ambientAudio = null;
+
 	// Use this for initialization
 	void Awake () {
 		if (instance != null && instance != this)
