@@ -195,6 +195,8 @@ MonoBehaviour:
   disablePlayer2Input: 0
   disablePlayer3Input: 0
   disablePlayer4Input: 0
+  ResultsObject: {fileID: 0}
+  ResultsScript: {fileID: 0}
 --- !u!4 &1854843171
 Transform:
   m_ObjectHideFlags: 0

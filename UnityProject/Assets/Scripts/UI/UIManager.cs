@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
 		if (instance != null && instance != this)
 		{
 			Destroy(this.gameObject);
+			instance.LoadTitleScreen();
 			return;
 		}
 		else
@@ -34,19 +35,25 @@ public class UIManager : MonoBehaviour {
 		//Input handling for UI
 		if (HUDScript != null)
 		{
-			if (Input.GetKeyDown(KeyCode.E))
+			// DEBUG CONTROLS
+			if (Input.GetKeyDown(KeyCode.E) && HUDScript != null)
 			{
 				ShowEventBox("B", 15);
 			}
+			
+			if (Input.GetKeyDown(KeyCode.R) && HUDScript != null)
+			{
+				LoadResults();
+			}
 
-			if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) // Both triggers held down
+			if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) && HUDScript != null) // Both triggers held down
 			{
 				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
 				{
 					UpdatePowerBar(1, 0.003f);
 				}
 			}
-			else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A)) // one trigger is held down
+			else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) && HUDScript != null) // one trigger is held down
 			{
 				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
 				{
@@ -55,11 +62,16 @@ public class UIManager : MonoBehaviour {
 			}
 			else
 			{
-				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
+				if (HUDScript != null)
 				{
-					UpdatePowerBar(1, -0.0015f);
+					if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
+					{
+						UpdatePowerBar(1, -0.0015f);
+					}
 				}
 			}
+			
+			// TODO: Add the rest of the players' inputs here to hook them up to the UI
 		}
 	}
 
@@ -102,7 +114,17 @@ public class UIManager : MonoBehaviour {
 		HUDObject = GameObject.Instantiate(Resources.Load ("UI/Prefabs/HUD")) as GameObject;
 		HUDScript = (UIPanel_HUD)HUDObject.GetComponentInChildren<UIPanel_HUD>() as UIPanel_HUD;
 	}
-
+	
+	public void DestroyHUD()
+	{
+		if (HUDObject != null)
+		{
+			Destroy(HUDObject);
+			HUDObject = null;
+			HUDScript = null;
+		}
+	}
+	
 	public void UpdatePowerBar(int playerNum, float powerAmount)
 	{
 		if(HUDScript != null)
@@ -250,15 +272,27 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 	
-//	public GameObject ResultsObject = null;
-//	public UIResults ResultsScript = null;
-//	
-//	public void LoadResults()
-//	{
-//		// Load the main menu UI
-//		ResultsObject = GameObject.Instantiate(Resources.Load ("UI/Prefabs/Results")) as GameObject;
-//		ResultsScript = (UIResults)ResultsObject.GetComponent<UIResults>() as UIResults;
-//	}
+	public GameObject ResultsObject = null;
+	public UIPanel_Results ResultsScript = null;
+	
+	public void LoadResults()
+	{
+		// Load the main menu UI
+		ResultsObject = GameObject.Instantiate(Resources.Load ("UI/Prefabs/Results")) as GameObject;
+		ResultsScript = (UIPanel_Results)ResultsObject.GetComponent<UIPanel_Results>() as UIPanel_Results;
+		
+		DestroyHUD();
+	}
+	
+	public void DestroyResults()
+	{
+		if (ResultsObject != null)
+		{
+			Destroy(ResultsObject);
+			ResultsObject = null;
+			ResultsScript = null;
+		}
+	}
 
 
 	//==================================================================================================|

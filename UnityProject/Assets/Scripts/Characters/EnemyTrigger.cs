@@ -7,14 +7,18 @@ public class EnemyTrigger : MonoBehaviour
 	public bool engage =false;
 	public bool exit = false;
 	public Vector3 exitPos;
+
+	private Enemy enemy;
 	// Use this for initialization
 	void Start () 
 	{
 		player = GameObject.FindWithTag("Player");
+		enemy = GetComponentInParent<Enemy>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 	void OnTriggerEnter(Collider other)
@@ -22,6 +26,7 @@ public class EnemyTrigger : MonoBehaviour
 		if (other == player.collider) 
 		{
 			engage = true;
+			enemy.EngageSet();
 		};
 	}
 	void OnTriggerExit (Collider other)
