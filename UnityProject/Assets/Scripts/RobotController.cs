@@ -13,6 +13,8 @@ public class RobotController : MonoBehaviour {
 	public Thruster rightThruster;
 	
 	public Transform baseRotation;
+	
+	private float topSpeedAllowed = 4.5f;
 
 	// Use this for initialization
 	void Start ()
@@ -40,6 +42,8 @@ public class RobotController : MonoBehaviour {
 
 		ClampVelocity();
 		HandleRotation();
+		//PrintControllerResponses();
+		//PrintOtherControllerResponses();
 
 	}
 
@@ -142,18 +146,42 @@ public class RobotController : MonoBehaviour {
 	
 	public void ClampVelocity()
 	{
-		if (rigidbody.velocity.magnitude > 2.75f)
+		if (rigidbody.velocity.magnitude > topSpeedAllowed)
 		{
 			Vector3 normalizedVelocity = rigidbody.velocity;
 			normalizedVelocity.Normalize();
 			
-			rigidbody.velocity = normalizedVelocity * 2.75f;
+			rigidbody.velocity = normalizedVelocity * topSpeedAllowed;
 		}
 	}
 	
 	public void HandleRotation()
 	{
-		baseRotation.Rotate(Time.deltaTime * 5f, 0, 0);
+		baseRotation.Rotate(Time.deltaTime * 6f, 0, 0);
+	}
+	
+	public void PrintControllerResponses()
+	{
+		print (InputManager.pl_Controller.leftTrigger + "   " + 
+		       InputManager.pl_Controller.rightTrigger + "   " +
+		       InputManager.p2_Controller.rightTrigger + "   " +
+		       InputManager.p2_Controller.rightTrigger + "   " +
+		       InputManager.p3_Controller.rightTrigger + "   " +
+		       InputManager.p3_Controller.rightTrigger + "   " +
+		       InputManager.p4_Controller.rightTrigger + "   " +
+		       InputManager.p4_Controller.rightTrigger + "   " );
+	}
+	
+	public void PrintOtherControllerResponses()
+	{
+		print (Input.GetAxis("TriggersL_1") + "    " +
+		       Input.GetAxis("TriggersR_1") + "    " +
+		       Input.GetAxis("TriggersL_2") + "    " +
+		       Input.GetAxis("TriggersR_2") + "    " +
+		       Input.GetAxis("TriggersL_3") + "    " +
+		       Input.GetAxis("TriggersR_3") + "    " +
+		       Input.GetAxis("TriggersL_4") + "    " +
+		       Input.GetAxis("TriggersR_4") + "    " );
 	}
 }
 
