@@ -66,7 +66,7 @@ public class Thruster : MonoBehaviour {
 			//GetComponentInParent<Rigidbody> ().AddForceAtPosition (new Vector3 (0, 0, totalThrust), this.transform.position);
 			previousThrust = actualThrust;
 		}
-		transform.parent.GetComponentInParent<Rigidbody> ().AddForce (-this.transform.forward * previousThrust * 7.5f);
+		transform.parent.parent.parent.parent.GetComponentInParent<Rigidbody> ().AddForce (-this.transform.forward * previousThrust * 7.5f);
 
 
 	}
