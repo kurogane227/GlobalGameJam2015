@@ -291,24 +291,30 @@ public class UIManager : MonoBehaviour {
 		{
 			if (playerNum == 1)
 			{
+				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
 				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
 			}
 			else if (playerNum == 2)
 			{
+				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
 				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
 			}
 			else if (playerNum == 3)
 			{
+				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
 				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
 			}
 			else if (playerNum == 4)
 			{
+				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
 				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
 			}
 			else
 			{
 				Debug.Log("Did not specify a player for hit reaction...");
 			}
+			
+			StartCoroutine(DelayedResetAlienPictures());
 		}
 	}
 	
@@ -316,11 +322,28 @@ public class UIManager : MonoBehaviour {
 	{
 		if (HUDScript != null)
 		{
+			HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+			HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+			HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+			HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+		
 			HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
 			HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
 			HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
 			HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
+			
+			StartCoroutine(DelayedResetAlienPictures());
 		}
+	}
+	
+	public IEnumerator DelayedResetAlienPictures()
+	{
+		yield return new WaitForSeconds(1.5f);
+		
+		HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
+		HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
+		HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
+		HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
 	}
 
 	public void ShowEventBox(string buttonLetter = "X", int numTimesToPress = 10)
