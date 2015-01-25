@@ -8,6 +8,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: ENV_WalkwayWall_Obtuse
+    4300002: ENV_TallWall_Obtuse
     9500000: //RootNode
   materials:
     importMaterials: 1

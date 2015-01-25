@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour {
 			//==========================|
 			if (Input.GetKeyDown(KeyCode.E) && HUDScript != null)
 			{
-				ShowEventBox("B", 15);
+				ShowEventBox(12, "A");
 			}
 			
 			if (Input.GetKeyDown(KeyCode.R) && HUDScript != null)
@@ -197,8 +197,199 @@ public class UIManager : MonoBehaviour {
 					}
 				}
 			}
+			
+			//==================================================================================================|
+			// EVENT CONTROLS
+			//==================================================================================================|
+//			if (isEventActive)
+//			{
+//				// DEBUG CONTROLS TO TEST TODO: REMOVE THESE
+//				if (eventButtonLetter == "A")
+//				{
+//					if (Input.GetKeyDown(KeyCode.M))
+//					{
+//						// A button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				
+//				if (eventButtonLetter == "B")
+//				{
+//					if (Input.GetKeyDown(KeyCode.K))
+//					{
+//						// B button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				
+//				if (eventButtonLetter == "X")
+//				{
+//					if (Input.GetKeyDown(KeyCode.N))
+//					{
+//						// X button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				
+//				if (eventButtonLetter == "Y")
+//				{
+//					if (Input.GetKeyDown(KeyCode.J))
+//					{
+//						// Y button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				// REAL CONTROLS
+//				if (eventButtonLetter == "A")
+//				{
+//					if (InputManager.pl_Controller.a_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						// A button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p2_Controller.a_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p3_Controller.a_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p4_Controller.a_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				
+//				if (eventButtonLetter == "B")
+//				{
+//					if (InputManager.pl_Controller.b_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						// A button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p2_Controller.b_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p3_Controller.b_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p4_Controller.b_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				
+//				if (eventButtonLetter == "X")
+//				{
+//					if (InputManager.pl_Controller.x_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						// A button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p2_Controller.x_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p3_Controller.x_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p4_Controller.x_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				
+//				if (eventButtonLetter == "Y")
+//				{
+//					if (InputManager.pl_Controller.y_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						// A button was pressed?
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p2_Controller.y_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p3_Controller.y_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//					
+//					if (InputManager.p4_Controller.y_Button == InputManager.XBoxController.buttonState.JUST_PRESSED)
+//					{
+//						eventCountCurrentNum++;
+//						UpdateEventCount(eventCountCurrentNum);
+//					}
+//				}
+//				
+//				if (eventCountCurrentNum >= eventCountMax)
+//				{
+//					// Event count is full, but not quite over yet
+//					
+//					if (eventCountCurrentNum > eventCountMax)
+//					{
+//						eventCountWentOver = true;
+//					}
+//					
+//					if (startEventProcessor)
+//					{
+//						startEventProcessor = false;
+//						StartCoroutine(DetermineEventSuccess());
+//					}
+//				}
+//			}
 		}
 	}
+	
+//	public IEnumerator DetermineEventSuccess()
+//	{
+//		yield return new WaitForSeconds(1.0f);
+//		
+//		if (eventCountWentOver)
+//		{
+//			Debug.Log("YOU FAILED, NICE GOING, YA BUNCH OF ALIENS");
+//		}
+//		else
+//		{
+//			Debug.Log("YOU ACTUALLY SUCCEEDED, I'M NOT ENTIRELY DISSATISFIED");
+//		}
+//		
+//		HideEventBox();
+//	}
 
 	//==================================================================================================|
 	// TITLE SCREEN
@@ -232,6 +423,13 @@ public class UIManager : MonoBehaviour {
 	public bool disablePlayer2Input = false;
 	public bool disablePlayer3Input = false;
 	public bool disablePlayer4Input = false;
+	
+	public bool isEventActive = false;
+	public string eventButtonLetter = "";
+	//private int eventCountCurrentNum = 0;
+	//private int eventCountMax = 99;
+	//private bool eventCountWentOver = false;
+	//private bool startEventProcessor = true;
 	
 	public void LoadHUD()
 	{
@@ -291,30 +489,24 @@ public class UIManager : MonoBehaviour {
 		{
 			if (playerNum == 1)
 			{
-				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
 			}
 			else if (playerNum == 2)
 			{
-				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
 			}
 			else if (playerNum == 3)
 			{
-				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
+				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
 			}
 			else if (playerNum == 4)
 			{
-				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
+				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
 			}
 			else
 			{
 				Debug.Log("Did not specify a player for hit reaction...");
 			}
-			
-			StartCoroutine(DelayedResetAlienPictures());
 		}
 	}
 	
@@ -322,43 +514,56 @@ public class UIManager : MonoBehaviour {
 	{
 		if (HUDScript != null)
 		{
-			HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-			HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-			HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-			HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
-		
-			HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
-			HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
-			HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
-			HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
-			
-			StartCoroutine(DelayedResetAlienPictures());
+			HUDScript.player1HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
+			HUDScript.player2HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
+			HUDScript.player3HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
+			HUDScript.player4HUD.GetComponent<UIPlayerHUD>().CharacterShake(1.5f);
 		}
 	}
-	
-	public IEnumerator DelayedResetAlienPictures()
-	{
-		yield return new WaitForSeconds(1.5f);
-		
-		HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
-		HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
-		HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
-		HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
-	}
 
-	public void ShowEventBox(string buttonLetter = "X", int numTimesToPress = 10)
+	public void ShowEventBox(int eventCountMax, string eventButtonLetter)
 	{
 		if (HUDScript != null)
 		{
+			// Determine random letter and count for this event
+//			int rndLetter = Random.Range(1, 5);
+//			if (rndLetter == 1)
+//			{
+//				eventButtonLetter = "A";
+//			}
+//			else if (rndLetter == 2)
+//			{
+//				eventButtonLetter = "B";
+//			}
+//			else if (rndLetter == 3)
+//			{
+//				eventButtonLetter = "X";
+//			}
+//			else if (rndLetter == 4)
+//			{
+//				eventButtonLetter = "Y";
+//			}
+//			else
+//			{
+//				Debug.Log("This event doesn't have the right letter...");
+//			}
+			
+			//eventCountMax = Random.Range(5, 20);
+			//eventCountCurrentNum = 0;
+		
 			HUDScript.eventObject.SetActive(true);
-			HUDScript.eventObject.GetComponent<UIEvent>().eventText.text = "Press " + buttonLetter + "\n" + numTimesToPress + " times!";
-			ShowButtonPrompt(buttonLetter);
+			HUDScript.eventObject.GetComponent<UIEvent>().eventText.text = "Press " + eventButtonLetter + "\n" + eventCountMax + " times!";
+			ShowButtonPrompt(eventButtonLetter);
 			UpdateEventCount(0);
+			//isEventActive = true;
 		}
 	}
 
 	public void HideEventBox()
 	{
+		//isEventActive = false;
+		//startEventProcessor = true;
+		//eventCountWentOver = false;
 		HUDScript.eventObject.SetActive(false);
 	}
 
