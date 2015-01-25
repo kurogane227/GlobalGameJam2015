@@ -250,10 +250,11 @@ MonoBehaviour:
   shortCircuit: {fileID: 0}
   fanfare: {fileID: 0}
   boo: {fileID: 0}
-  player1Scream: {fileID: 0}
-  player2Scream: {fileID: 0}
-  player3Scream: {fileID: 0}
-  player4Scream: {fileID: 0}
+  player1Scream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
+  player2Scream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
+  player3Scream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
+  player4Scream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
+  everyoneScream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
   ambientRollerCoaster: {fileID: 8300000, guid: 6430b305203b68f4fb5a34e10af0e702,
     type: 3}
   ambientAudio: {fileID: 8300000, guid: 66b0fc801473ee14d8732a82b1ced0d0, type: 3}

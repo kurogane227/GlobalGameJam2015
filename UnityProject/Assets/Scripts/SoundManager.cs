@@ -52,6 +52,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip player2Scream = null;
 	public AudioClip player3Scream = null;
 	public AudioClip player4Scream = null;
+	public AudioClip everyoneScream = null;
 
 	public AudioClip ambientRollerCoaster = null;
 	public AudioClip ambientAudio = null;
@@ -72,19 +73,41 @@ public class SoundManager : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 	}
 
+	public void PlayEveryoneScream(){
+		audioToPlay.PlayOneShot(everyoneScream);
+	}
+
+	public void MakePlayerScream(float id){
+		if(id == 1){
+			audioToPlay.PlayOneShot(player1Scream);
+		}
+		else if(id == 2){
+			audioToPlay.PlayOneShot(player2Scream);
+		}
+		else if(id == 3){
+			audioToPlay.PlayOneShot(player3Scream);
+		}
+		else if(id == 4){
+			audioToPlay.PlayOneShot(player4Scream);
+		}
+		else{
+			audioToPlay.PlayOneShot(everyoneScream);
+		}
+	}
+
 	public void PlayBouncyClip(){
 		int choice = Random.Range(1, 4);
 
 		switch (choice){
 		case 1:
-			audioToPlay.PlayOneShot(collisionBounce1);
+			audioToPlay.PlayOneShot(collisionBounce1, .6f);
 			
 			break;
 		case 2:
-			audioToPlay.PlayOneShot(collisionBounce2);
+			audioToPlay.PlayOneShot(collisionBounce2, .6f);
 			break;
 		default:
-			audioToPlay.PlayOneShot(collisionBounce3);
+			audioToPlay.PlayOneShot(collisionBounce3, .6f);
 			break;
 		}
 	}
@@ -94,13 +117,13 @@ public class SoundManager : MonoBehaviour {
 		
 		switch (choice){
 		case 1:
-			audioToPlay.PlayOneShot(collisionRough1);
+			audioToPlay.PlayOneShot(collisionRough1, .6f);
 			break;
 		case 2:
-			audioToPlay.PlayOneShot(collisionRough2);
+			audioToPlay.PlayOneShot(collisionRough2, .6f);
 			break;
 		default:
-			audioToPlay.PlayOneShot(collisionRough3);
+			audioToPlay.PlayOneShot(collisionRough3, .6f);
 			break;
 		}
 	}
@@ -110,13 +133,13 @@ public class SoundManager : MonoBehaviour {
 		
 		switch (choice){
 		case 1:
-			audioToPlay.PlayOneShot(collisionSmack1);
+			audioToPlay.PlayOneShot(collisionSmack1, .6f);
 			break;
 		case 2:
-			audioToPlay.PlayOneShot(collisionSmack2);
+			audioToPlay.PlayOneShot(collisionSmack2, .6f);
 			break;
 		default:
-			audioToPlay.PlayOneShot(collisionSmack3);
+			audioToPlay.PlayOneShot(collisionSmack3, .6f);
 			break;
 		}
 	}

@@ -40,6 +40,7 @@ public class PhysicsObject : MonoBehaviour {
 				else{
 					SoundManager.Instance.PlaySmackClip();
 				}
+				SoundManager.Instance.PlayEveryoneScream();
 			}
 		}
 	}
