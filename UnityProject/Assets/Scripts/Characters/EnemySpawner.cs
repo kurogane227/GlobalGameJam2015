@@ -19,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			SpawnEnemy();
 		}
 	}
 	void SpawnEnemy()
@@ -30,5 +29,13 @@ public class EnemySpawner : MonoBehaviour
 		waypoints.AddRange(waypointsArray);
 		waypoints.RemoveAt (0);
 		enemy.patrolWayPoints = waypoints.ToArray();
+	}
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.tag == "Player")
+		{
+			SpawnEnemy();
+			gameObject.SetActive(false);
+		}
 	}
 }
