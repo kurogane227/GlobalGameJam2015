@@ -7,6 +7,14 @@ public class Thruster : MonoBehaviour {
 	public float thrust_2;
 	public string cheatThrust;
 	public float desiredThrust;
+	
+	[HideInInspector]
+	public int leftTriggerIndex;
+	[HideInInspector]
+	public int rightTriggerIndex;
+	
+	public ParticleSystem leftTriggerFX;
+	public ParticleSystem rightTriggerFX;
 
 	
 	private float previousThrust;
@@ -25,12 +33,13 @@ public class Thruster : MonoBehaviour {
 	void Update ()
 	{
 
-		desiredThrust = thrust_1 + thrust_2;
 
 		if (Input.GetButton (cheatThrust))
 		{
-			desiredThrust += 1.5f;
+			thrust_1 = 0.75f;
+			thrust_2 = 0.75f;
 		}
+		desiredThrust = thrust_1 + thrust_2;
 
 		if (desiredThrust != previousThrust) 
 		{
@@ -52,26 +61,16 @@ public class Thruster : MonoBehaviour {
 				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 3f);
 			}
 
-			//currentPowerPercentage = actualThrust / 2f;
 			
-			
-			
-			//float particleScale = (desiredThrust / 4);
-			//Transform particleTransform = GetComponentInChildren<SphereCollider>().transform;
-			
-			//UpdateFXScale(particleTransform);
-			// 1 * 0.002
-
-			//print (thrust_1 + "   " + thrust_2 + "    " + totalThrust);
-			//GetComponentInParent<Rigidbody> ().AddForceAtPosition (new Vector3 (0, 0, totalThrust), this.transform.position);
 			previousThrust = actualThrust;
 		}
 		
 		Transform particleTransform = GetComponentInChildren<SphereCollider>().transform;
 		
 		UpdateFXScale(particleTransform);
+		UpdateParticleScale();
 		transform.parent.parent.parent.parent.GetComponentInParent<Rigidbody> ().AddForce (-this.transform.forward * previousThrust * 10f);
-
+		
 
 	}
 	
@@ -96,5 +95,35 @@ public class Thruster : MonoBehaviour {
 			particleTransform.localScale = new Vector3(newScale, newScale, newScale);
 			GetComponentInChildren<Light>().range = newScale * 25f;
 		}
+	}
+	
+	public void UpdateParticleScale()
+	{
+		float desiredLeftEmissionRate = thrust_1 * 8f;
+		float desiredRightEmissionRate = thrust_2 * 8f;
+		
+		leftTriggerFX.emissionRate = desiredLeftEmissionRate;
+		rightTriggerFX.emissionRate = desiredRightEmissionRate;
+		leftTriggerFX.startSpeed = thrust_1 + 0.25f;
+		rightTriggerFX.startSpeed = thrust_2 + 0.25f;
+		
+		if (leftTriggerIndex == 0)
+			leftTriggerFX.startColor = Color.blue;
+		else if (leftTriggerIndex == 1)
+			leftTriggerFX.startColor = Color.yellow;
+		else if (leftTriggerIndex == 2)
+			leftTriggerFX.startColor = Color.green;
+		else if (leftTriggerIndex == 3)
+			leftTriggerFX.startColor = Color.red;
+		
+		
+		if (rightTriggerIndex == 0)
+			rightTriggerFX.startColor = Color.blue;
+		else if (rightTriggerIndex == 1)
+			rightTriggerFX.startColor = Color.yellow;
+		else if (rightTriggerIndex == 2)
+			rightTriggerFX.startColor = Color.green;
+		else if (rightTriggerIndex == 3)
+			rightTriggerFX.startColor = Color.red;
 	}
 }

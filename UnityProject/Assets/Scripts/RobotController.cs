@@ -6,6 +6,8 @@ public class RobotController : MonoBehaviour {
 
 	public List<Thruster> leftThrusterAssignment;
 	public List<Thruster> rightThrusterAssignment;
+	
+	public List<Material> materialList;
 
 	public Thruster frontThruster;
 	public Thruster backThruster;
@@ -26,16 +28,32 @@ public class RobotController : MonoBehaviour {
 	void Update ()
 	{
 		leftThrusterAssignment [0].thrust_1 = InputManager.pl_Controller.leftTrigger;
-		rightThrusterAssignment [0].thrust_2 = InputManager.pl_Controller.rightTrigger;
+		leftThrusterAssignment [0].thrust_2 = InputManager.pl_Controller.leftTrigger;
+		//rightThrusterAssignment [0].thrust_2 = InputManager.pl_Controller.rightTrigger;
+		leftThrusterAssignment[0].leftTriggerIndex = 0;
+		leftThrusterAssignment[0].rightTriggerIndex = 0;
+		//rightThrusterAssignment[0].rightTriggerIndex = 0;
 
 		leftThrusterAssignment [1].thrust_1 = InputManager.p2_Controller.leftTrigger;
-		rightThrusterAssignment [1].thrust_2 = InputManager.p2_Controller.rightTrigger;
+		leftThrusterAssignment [1].thrust_2 = InputManager.p2_Controller.leftTrigger;
+		//rightThrusterAssignment [1].thrust_2 = InputManager.p2_Controller.rightTrigger;
+		leftThrusterAssignment[1].leftTriggerIndex = 1;
+		leftThrusterAssignment[1].rightTriggerIndex = 1;
+		//rightThrusterAssignment[1].rightTriggerIndex = 1;
 
 		leftThrusterAssignment [2].thrust_1 = InputManager.p3_Controller.leftTrigger;
-		rightThrusterAssignment [2].thrust_2 = InputManager.p3_Controller.rightTrigger;
+		leftThrusterAssignment [2].thrust_2 = InputManager.p3_Controller.leftTrigger;
+		//rightThrusterAssignment [2].thrust_2 = InputManager.p3_Controller.rightTrigger;
+		leftThrusterAssignment[2].leftTriggerIndex = 2;
+		leftThrusterAssignment[2].rightTriggerIndex = 2;
+		//rightThrusterAssignment[2].rightTriggerIndex = 2;
 
 		leftThrusterAssignment [3].thrust_1 = InputManager.p4_Controller.leftTrigger;
-		rightThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.rightTrigger;
+		leftThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.leftTrigger;
+		//rightThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.rightTrigger;
+		leftThrusterAssignment[3].leftTriggerIndex = 3;
+		leftThrusterAssignment[3].rightTriggerIndex = 3;
+		//rightThrusterAssignment[3].rightTriggerIndex = 3;
 
 
 		ClampVelocity();
@@ -57,8 +75,9 @@ public class RobotController : MonoBehaviour {
 
 		ShuffleThrusterList (leftThrusterAssignment, rightThrusterAssignment);
 		ShuffleThrusterList (rightThrusterAssignment, leftThrusterAssignment);
+		MatchRobotColors();
 
-		StartCoroutine(UpdatePlayerThrusterColors());
+		//StartCoroutine(UpdatePlayerThrusterColors());
 	}
 
 	void ShuffleThrusterList(List<Thruster> listToShuffle, List<Thruster> otherList)
@@ -73,7 +92,7 @@ public class RobotController : MonoBehaviour {
 		}
 		PerformComparisonCheck (listToShuffle, otherList);
 		
-		StartCoroutine(UpdatePlayerThrusterColors());
+		//StartCoroutine(UpdatePlayerThrusterColors());
 	}
 
 	void PerformComparisonCheck(List<Thruster> shufflingList, List<Thruster> otherList)
@@ -98,7 +117,7 @@ public class RobotController : MonoBehaviour {
 		{
 			if (shufflingList [2] != otherList[1])
 			{
-				Thruster tempThruster = shufflingList[1];
+				Thruster tempThruster = shufflingList[2];
 				shufflingList[2] = shufflingList[1];
 				shufflingList[1] = tempThruster;
 			}
@@ -150,15 +169,23 @@ public class RobotController : MonoBehaviour {
 			Vector3 normalizedVelocity = rigidbody.velocity;
 			normalizedVelocity.Normalize();
 			
-			rigidbody.velocity = normalizedVelocity * 5f;
+			rigidbody.velocity = normalizedVelocity * 4f;
 		}
 	}
 	
 	public void HandleRotation()
 	{
-		baseRotation.Rotate(Time.deltaTime * 10f, 0, 0);
+		baseRotation.Rotate(Time.deltaTime * 30f, 0, 0);
 	}
 	
+
+	public void MatchRobotColors()
+	{
+		
+		//mats[3].mainTexture
+	}
+	
+/*
 	public IEnumerator UpdatePlayerThrusterColors()
 	{
 		yield return new WaitForSeconds(0.01f); // hack for setup timing
@@ -347,5 +374,6 @@ public class RobotController : MonoBehaviour {
 			UIManager.Instance.HUDScript.player4HUD.GetComponent<UIPlayerHUD>().SetNewTriggerPanels(UIManager.Instance.player4LeftThrusterColor, UIManager.Instance.player4RightThrusterColor);
 		}
 	}
+*/
 }
 
