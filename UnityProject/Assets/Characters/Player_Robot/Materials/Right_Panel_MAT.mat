@@ -58,7 +58,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .110294111, g: .625, b: .241632774, a: 1}
+        second: {r: .448529422, g: .448529422, b: .448529422, a: 1}
       data:
         first:
           name: _ScrollTexColor
