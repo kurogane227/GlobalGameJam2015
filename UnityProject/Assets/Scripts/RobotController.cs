@@ -11,6 +11,8 @@ public class RobotController : MonoBehaviour {
 	public Thruster backThruster;
 	public Thruster leftThruster;
 	public Thruster rightThruster;
+	
+	public Transform baseRotation;
 
 	// Use this for initialization
 	void Start ()
@@ -36,13 +38,9 @@ public class RobotController : MonoBehaviour {
 		rightThrusterAssignment [3].thrust_2 = InputManager.p4_Controller.rightTrigger;
 
 
-		if (rigidbody.velocity.magnitude > 2.5f)
-		{
-			Vector3 normalizedVelocity = rigidbody.velocity;
-			normalizedVelocity.Normalize();
+		ClampVelocity();
+		HandleRotation();
 
-			rigidbody.velocity = normalizedVelocity * 2.5f;
-		}
 	}
 
 	void AssignInitialThrusters()
@@ -140,6 +138,22 @@ public class RobotController : MonoBehaviour {
 				shufflingList[3] = tempThruster;
 			}
 		}
+	}
+	
+	public void ClampVelocity()
+	{
+		if (rigidbody.velocity.magnitude > 2.5f)
+		{
+			Vector3 normalizedVelocity = rigidbody.velocity;
+			normalizedVelocity.Normalize();
+			
+			rigidbody.velocity = normalizedVelocity * 2.5f;
+		}
+	}
+	
+	public void HandleRotation()
+	{
+		baseRotation.Rotate(Time.deltaTime * 5f, 0, 0);
 	}
 }
 
