@@ -58,6 +58,7 @@ public class RobotController : MonoBehaviour {
 		ShuffleThrusterList (leftThrusterAssignment, rightThrusterAssignment);
 		ShuffleThrusterList (rightThrusterAssignment, leftThrusterAssignment);
 
+		StartCoroutine(UpdatePlayerThrusterColors());
 	}
 
 	void ShuffleThrusterList(List<Thruster> listToShuffle, List<Thruster> otherList)
@@ -71,6 +72,8 @@ public class RobotController : MonoBehaviour {
 			listToShuffle[i] = t;
 		}
 		PerformComparisonCheck (listToShuffle, otherList);
+		
+		StartCoroutine(UpdatePlayerThrusterColors());
 	}
 
 	void PerformComparisonCheck(List<Thruster> shufflingList, List<Thruster> otherList)
@@ -154,6 +157,195 @@ public class RobotController : MonoBehaviour {
 	public void HandleRotation()
 	{
 		baseRotation.Rotate(Time.deltaTime * 10f, 0, 0);
+	}
+	
+	public IEnumerator UpdatePlayerThrusterColors()
+	{
+		yield return new WaitForSeconds(0.01f); // hack for setup timing
+	
+		// Handle UI thruster coloring
+		// Front = Red, Right = Green, Back = Blue, Left = Yellow
+		
+		// Player 1
+		if (leftThrusterAssignment[0] == frontThruster)
+		{
+			UIManager.Instance.player1LeftThrusterColor = "red";
+		}
+		else if (leftThrusterAssignment[0] == backThruster)
+		{
+			UIManager.Instance.player1LeftThrusterColor = "blue";
+		}
+		else if (leftThrusterAssignment[0] == leftThruster)
+		{
+			UIManager.Instance.player1LeftThrusterColor = "yellow";
+		}
+		else if (leftThrusterAssignment[0] == rightThruster)
+		{
+			UIManager.Instance.player1LeftThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		if (rightThrusterAssignment[0] == frontThruster)
+		{
+			UIManager.Instance.player1RightThrusterColor = "red";
+		}
+		else if (rightThrusterAssignment[0] == backThruster)
+		{
+			UIManager.Instance.player1RightThrusterColor = "blue";
+		}
+		else if (rightThrusterAssignment[0] == leftThruster)
+		{
+			UIManager.Instance.player1RightThrusterColor = "yellow";
+		}
+		else if (rightThrusterAssignment[0] == rightThruster)
+		{
+			UIManager.Instance.player1RightThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		// Player 2
+		if (leftThrusterAssignment[1] == frontThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "red";
+		}
+		else if (leftThrusterAssignment[1] == backThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "blue";
+		}
+		else if (leftThrusterAssignment[1] == leftThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "yellow";
+		}
+		else if (leftThrusterAssignment[1] == rightThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		if (rightThrusterAssignment[1] == frontThruster)
+		{
+			UIManager.Instance.player2RightThrusterColor = "red";
+		}
+		else if (rightThrusterAssignment[1] == backThruster)
+		{
+			UIManager.Instance.player2RightThrusterColor = "blue";
+		}
+		else if (rightThrusterAssignment[1] == leftThruster)
+		{
+			UIManager.Instance.player2RightThrusterColor = "yellow";
+		}
+		else if (rightThrusterAssignment[1] == rightThruster)
+		{
+			UIManager.Instance.player2RightThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		// Player 3
+		if (leftThrusterAssignment[2] == frontThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "red";
+		}
+		else if (leftThrusterAssignment[2] == backThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "blue";
+		}
+		else if (leftThrusterAssignment[2] == leftThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "yellow";
+		}
+		else if (leftThrusterAssignment[2] == rightThruster)
+		{
+			UIManager.Instance.player2LeftThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		if (rightThrusterAssignment[2] == frontThruster)
+		{
+			UIManager.Instance.player3RightThrusterColor = "red";
+		}
+		else if (rightThrusterAssignment[2] == backThruster)
+		{
+			UIManager.Instance.player3RightThrusterColor = "blue";
+		}
+		else if (rightThrusterAssignment[2] == leftThruster)
+		{
+			UIManager.Instance.player3RightThrusterColor = "yellow";
+		}
+		else if (rightThrusterAssignment[2] == rightThruster)
+		{
+			UIManager.Instance.player3RightThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		// Player 4
+		if (leftThrusterAssignment[3] == frontThruster)
+		{
+			UIManager.Instance.player4LeftThrusterColor = "red";
+		}
+		else if (leftThrusterAssignment[3] == backThruster)
+		{
+			UIManager.Instance.player4LeftThrusterColor = "blue";
+		}
+		else if (leftThrusterAssignment[3] == leftThruster)
+		{
+			UIManager.Instance.player4LeftThrusterColor = "yellow";
+		}
+		else if (leftThrusterAssignment[3] == rightThruster)
+		{
+			UIManager.Instance.player4LeftThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		if (rightThrusterAssignment[3] == frontThruster)
+		{
+			UIManager.Instance.player4RightThrusterColor = "red";
+		}
+		else if (rightThrusterAssignment[3] == backThruster)
+		{
+			UIManager.Instance.player4RightThrusterColor = "blue";
+		}
+		else if (rightThrusterAssignment[3] == leftThruster)
+		{
+			UIManager.Instance.player4RightThrusterColor = "yellow";
+		}
+		else if (rightThrusterAssignment[3] == rightThruster)
+		{
+			UIManager.Instance.player4RightThrusterColor = "green";
+		}
+		else
+		{
+			Debug.Log("Incorrect thruster color assignment");
+		}
+		
+		// Update the colors
+		if (UIManager.Instance.HUDScript != null)
+		{
+			UIManager.Instance.HUDScript.player1HUD.GetComponent<UIPlayerHUD>().SetNewTriggerPanels(UIManager.Instance.player1LeftThrusterColor, UIManager.Instance.player1RightThrusterColor);
+			UIManager.Instance.HUDScript.player2HUD.GetComponent<UIPlayerHUD>().SetNewTriggerPanels(UIManager.Instance.player2LeftThrusterColor, UIManager.Instance.player2RightThrusterColor);
+			UIManager.Instance.HUDScript.player3HUD.GetComponent<UIPlayerHUD>().SetNewTriggerPanels(UIManager.Instance.player3LeftThrusterColor, UIManager.Instance.player3RightThrusterColor);
+			UIManager.Instance.HUDScript.player4HUD.GetComponent<UIPlayerHUD>().SetNewTriggerPanels(UIManager.Instance.player4LeftThrusterColor, UIManager.Instance.player4RightThrusterColor);
+		}
 	}
 }
 
