@@ -46,7 +46,10 @@ public class UIPlayerHUD : MonoBehaviour {
 			// TODO: Figure out why animation is not working
 			overheatObject.animation.Play("overheat");
 			alienALTPicture.SetActive(true);
-			alienPicture.animation.Play("pictureShake");
+			if (myNumber == 1 || myNumber == 2)
+				alienPicture.animation.Play("pictureShake");
+			else
+				alienPicture.animation.Play("pictureShake2");
 			StartCoroutine(Cooldown(reenableNum));
 		}
 	}

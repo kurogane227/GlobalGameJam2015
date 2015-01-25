@@ -3,9 +3,9 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 	
-	private float doubleSpeed = 0.003f;
-	private float singleSpeed = 0.0015f;
-	private float brakeSpeed = -0.0015f;
+	private float doubleSpeed = 0.006f;
+	private float singleSpeed = 0.003f;
+	private float brakeSpeed = -0.003f;
 	
 	private static UIManager instance = null;
 	public static UIManager Instance
@@ -42,15 +42,20 @@ public class UIManager : MonoBehaviour {
 			//==========================|
 			// DEBUG CONTROLS
 			//==========================|
-//			if (Input.GetKeyDown(KeyCode.E) && HUDScript != null)
-//			{
-//				ShowEventBox("B", 15);
-//			}
-//			
-//			if (Input.GetKeyDown(KeyCode.R) && HUDScript != null)
-//			{
-//				LoadResults();
-//			}
+			if (Input.GetKeyDown(KeyCode.E) && HUDScript != null)
+			{
+				ShowEventBox("B", 15);
+			}
+			
+			if (Input.GetKeyDown(KeyCode.R) && HUDScript != null)
+			{
+				LoadResults();
+			}
+			
+			if (Input.GetKeyDown(KeyCode.I) && HUDScript != null)
+			{
+				PlayAllHitReaction();
+			}
 //
 //			if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) && HUDScript != null) // Both triggers held down
 //			{
@@ -280,31 +285,65 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
-	public void PlayHitReaction(int playerNum)
+	public void PlaySingleReaction(int playerNum)
 	{
 		if (HUDScript != null)
 		{
 			if (playerNum == 1)
 			{
+				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
 				HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
 			}
 			else if (playerNum == 2)
 			{
+				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
 				HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
 			}
 			else if (playerNum == 3)
 			{
-				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+				HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
 			}
 			else if (playerNum == 4)
 			{
-				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+				HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
 			}
 			else
 			{
 				Debug.Log("Did not specify a player for hit reaction...");
 			}
+			
+			StartCoroutine(DelayedResetAlienPictures());
 		}
+	}
+	
+	public void PlayAllHitReaction()
+	{
+		if (HUDScript != null)
+		{
+			HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+			HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+			HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+			HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(true);
+		
+			HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+			HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake");
+			HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
+			HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienPicture.animation.Play("pictureShake2");
+			
+			StartCoroutine(DelayedResetAlienPictures());
+		}
+	}
+	
+	public IEnumerator DelayedResetAlienPictures()
+	{
+		yield return new WaitForSeconds(1.5f);
+		
+		HUDScript.player1HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
+		HUDScript.player2HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
+		HUDScript.player3HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
+		HUDScript.player4HUD.GetComponent<UIPlayerHUD>().alienALTPicture.SetActive(false);
 	}
 
 	public void ShowEventBox(string buttonLetter = "X", int numTimesToPress = 10)

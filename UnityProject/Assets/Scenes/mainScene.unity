@@ -167,6 +167,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1854843171}
   - 114: {fileID: 1854843170}
+  - 114: {fileID: 1854843172}
   m_Layer: 0
   m_Name: _SCRIPTS
   m_TagString: Untagged
@@ -204,8 +205,51 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1854843169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 323.75885, y: 154.776398, z: 0}
+  m_LocalPosition: {x: 326.059998, y: 154.779999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1854843172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1854843169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616fc4579c60e1149b0f5faff073c8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childrenHooray1: {fileID: 0}
+  childrenHooray2: {fileID: 0}
+  childrenHooray3: {fileID: 0}
+  childrenSad1: {fileID: 0}
+  childrenSad2: {fileID: 0}
+  childrenSad3: {fileID: 0}
+  miltonGreetingSuccess1: {fileID: 0}
+  miltonGreetingSuccess2: {fileID: 0}
+  miltonGreetingSuccess3: {fileID: 0}
+  miltonGreetingFail1: {fileID: 0}
+  miltonGreetingFail2: {fileID: 0}
+  miltonGreetingFail3: {fileID: 0}
+  ambientRocketBoosterLight: {fileID: 0}
+  ambientRocketBoosterMedium: {fileID: 0}
+  ambientRocketBoosterHeavy: {fileID: 0}
+  ambientRocketBoosterSuperHeavy: {fileID: 0}
+  collisionBounce1: {fileID: 0}
+  collisionBounce2: {fileID: 0}
+  collisionBounce3: {fileID: 0}
+  collisionRough1: {fileID: 0}
+  collisionRough2: {fileID: 0}
+  collisionRough3: {fileID: 0}
+  collisionSmack1: {fileID: 0}
+  collisionSmack2: {fileID: 0}
+  collisionSmack3: {fileID: 0}
+  shortCircuit: {fileID: 0}
+  fanfare: {fileID: 0}
+  boo: {fileID: 0}
+  player1Scream: {fileID: 0}
+  player2Scream: {fileID: 0}
+  player3Scream: {fileID: 0}
+  player4Scream: {fileID: 0}
