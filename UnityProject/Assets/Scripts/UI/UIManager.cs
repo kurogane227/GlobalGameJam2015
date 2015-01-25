@@ -31,14 +31,35 @@ public class UIManager : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.E))
+		//Input handling for UI
+		if (HUDScript != null)
 		{
-			ShowEventBox("B", 15);
-		}
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				ShowEventBox("B", 15);
+			}
 
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			UpdatePowerBar(1, HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount + 0.1f);
+			if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) // Both triggers held down
+			{
+				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(1, 0.003f);
+				}
+			}
+			else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A)) // one trigger is held down
+			{
+				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount < 1.0f)
+				{
+					UpdatePowerBar(1, 0.0015f);
+				}
+			}
+			else
+			{
+				if (HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount > 0.0f)
+				{
+					UpdatePowerBar(1, -0.0015f);
+				}
+			}
 		}
 	}
 
@@ -70,6 +91,11 @@ public class UIManager : MonoBehaviour {
 	public GameObject HUDObject = null;
 	public UIPanel_HUD HUDScript = null;
 	
+	public bool disablePlayer1Input = false;
+	public bool disablePlayer2Input = false;
+	public bool disablePlayer3Input = false;
+	public bool disablePlayer4Input = false;
+	
 	public void LoadHUD()
 	{
 		// Load the main menu UI
@@ -85,28 +111,28 @@ public class UIManager : MonoBehaviour {
 			{
 				if (!HUDScript.player1HUD.GetComponent<UIPlayerHUD>().isOverheated)
 				{
-					HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+					HUDScript.player1HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount += powerAmount;
 				}
 			}
 			else if (playerNum == 2)
 			{
 				if (!HUDScript.player2HUD.GetComponent<UIPlayerHUD>().isOverheated)
 				{
-					HUDScript.player2HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+					HUDScript.player2HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount += powerAmount;
 				}
 			}
 			else if (playerNum == 3)
 			{
 				if (!HUDScript.player3HUD.GetComponent<UIPlayerHUD>().isOverheated)
 				{
-					HUDScript.player3HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+					HUDScript.player3HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount += powerAmount;
 				}
 			}
 			else
 			{
 				if (!HUDScript.player4HUD.GetComponent<UIPlayerHUD>().isOverheated)
 				{
-					HUDScript.player4HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount = powerAmount;
+					HUDScript.player4HUD.GetComponent<UIPlayerHUD>().powerFill.fillAmount += powerAmount;
 				}
 			}
 		}

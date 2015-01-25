@@ -44,10 +44,17 @@ public class InputManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		UpdatePlayer1Input ();
-		UpdatePlayer2Input ();
-		UpdatePlayer3Input ();
-		UpdatePlayer4Input ();
+		if (!UIManager.Instance.disablePlayer1Input)
+			UpdatePlayer1Input ();
+			
+		if (!UIManager.Instance.disablePlayer2Input)
+			UpdatePlayer2Input ();
+			
+		if (!UIManager.Instance.disablePlayer3Input)
+			UpdatePlayer3Input ();
+			
+		if (!UIManager.Instance.disablePlayer4Input)
+			UpdatePlayer4Input ();
 
 		
 
