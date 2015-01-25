@@ -7,7 +7,9 @@ public class EnemyTrigger : MonoBehaviour
 	public bool engage =false;
 	public bool exit = false;
 	public Vector3 exitPos;
-
+	
+	public float crashThreshold;
+	
 	private Enemy enemy;
 	// Use this for initialization
 	void Start () 
@@ -23,12 +25,24 @@ public class EnemyTrigger : MonoBehaviour
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		if (other == player.collider) 
+		if (other == player.collider && !enemy.dead) 
 		{
-			engage = true;
-			enemy.EngageSet();
-		};
+			if(other.rigidbody.velocity.magnitude > crashThreshold)
+			{
+			Debug.Log("KABOOM");
+				enemy.dead = true;
+				enemy.Die(other.transform.position);
+			}
+			else
+			{
+				engage = true;
+				enemy.EngageSet();
+			}
+			
+		}
+		
 	}
+	/*
 	void OnTriggerExit (Collider other)
 	{
 		if (other == player.collider) 
@@ -39,4 +53,5 @@ public class EnemyTrigger : MonoBehaviour
 			exit = true;
 		}
 	}
+	*/
 }

@@ -47,6 +47,9 @@ public class Enemy : MonoBehaviour
 		HARD
 	};
 	
+	public float deathForce;
+	public float deathRadius;
+	
 	string[] buttonList = new string[]
 	{
 		"A",
@@ -60,6 +63,8 @@ public class Enemy : MonoBehaviour
 		"RSL",
 		"RSR",
 	};
+	
+	public bool dead = false;
 	
 	public	difficultyStates difficulty;
 	// Use this for initialization
@@ -77,7 +82,11 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (enemyTrigger.engage)
+		if (dead)
+			{
+			
+			}
+		else if(enemyTrigger.engage)
 			Engage ();
 		else if (enemyTrigger.exit)
 			Exit ();
@@ -188,5 +197,18 @@ public class Enemy : MonoBehaviour
 		{
 			
 		}
+	}
+	public void Die(Vector3 forcePos)
+	{
+		nav.Stop();
+		nav.enabled = false;
+		rigidbody.isKinematic = false;
+		forcePos.y = -10;
+		Vector3 newTorque = new Vector3();
+		newTorque.x = Random.Range (-100,100);
+		newTorque.y = Random.Range (-100,100);
+		newTorque.z = Random.Range (-100,100);
+		rigidbody.AddTorque(newTorque);
+		rigidbody.AddExplosionForce(deathForce, forcePos, deathRadius);
 	}
 }
