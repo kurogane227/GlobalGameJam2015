@@ -10,7 +10,11 @@ public class Thruster : MonoBehaviour {
 
 	
 	private float previousThrust;
-	private float currentPowerPercentage;
+	//private float currentPowerPercentage;
+	
+	private float particleGrowthRate = 0.9f;
+	private float maxParticleScale = 0.4f;
+	
 
 	// Use this for initialization
 	void Start () {
@@ -48,17 +52,40 @@ public class Thruster : MonoBehaviour {
 				actualThrust = previousThrust + ((desiredThrust - previousThrust) * Time.deltaTime * 1.5f);
 			}
 
-			currentPowerPercentage = actualThrust / 2f;
-			GetComponentInChildren<ParticleSystem>().transform.localScale = new Vector3(currentPowerPercentage, currentPowerPercentage, currentPowerPercentage);
-
+			//currentPowerPercentage = actualThrust / 2f;
+			
+			
+			
+			//float particleScale = (desiredThrust / 4);
+			Transform particleTransform = GetComponentInChildren<SphereCollider>().transform;
+			
+			UpdateFXScale(particleTransform);
 			// 1 * 0.002
 
 			//print (thrust_1 + "   " + thrust_2 + "    " + totalThrust);
 			//GetComponentInParent<Rigidbody> ().AddForceAtPosition (new Vector3 (0, 0, totalThrust), this.transform.position);
 			previousThrust = actualThrust;
 		}
-		transform.parent.GetComponentInParent<Rigidbody> ().AddForce (this.transform.forward * previousThrust * 7.5f);
+		transform.parent.GetComponentInParent<Rigidbody> ().AddForce (-this.transform.forward * previousThrust * 7.5f);
 
 
+	}
+	
+	public void UpdateFXScale(Transform particleTransform)
+	{
+		float desiredParticleScale = (desiredThrust / 3.75f);
+		
+		if (particleTransform.localScale.x < desiredParticleScale)
+		{
+			float newScale = particleTransform.localScale.x + (Time.deltaTime * particleGrowthRate);
+			newScale = Mathf.Clamp(newScale, 0f, maxParticleScale);
+			particleTransform.localScale = new Vector3(newScale, newScale, newScale);
+		}
+		else if (particleTransform.localScale.x > desiredParticleScale)
+		{
+			float newScale = particleTransform.localScale.x - (Time.deltaTime * particleGrowthRate);
+			newScale = Mathf.Clamp(newScale, 0f, maxParticleScale); 
+			particleTransform.localScale = new Vector3(newScale, newScale, newScale);
+		}
 	}
 }
