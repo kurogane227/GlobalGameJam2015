@@ -71,6 +71,7 @@ ModelImporter:
     100130: Thrust_Pivot
     100132: L_eyelid
     100134: R_eyelid
+    100136: Player_Robot_Hair
     400000: CATRigHub001
     400002: CATRigHub002
     400004: CATRigHub002Bone001
@@ -139,11 +140,14 @@ ModelImporter:
     400130: Thrust_Pivot
     400132: L_eyelid
     400134: R_eyelid
+    400136: Player_Robot_Hair
     4300000: Player_Robot
+    4300002: Player_Robot_Hair
     7400000: Take 001
     9500000: //RootNode
     13700000: Player_Robot 1
     13700002: Player_Robot
+    13700004: Player_Robot_Hair
   materials:
     importMaterials: 1
     materialName: 0
