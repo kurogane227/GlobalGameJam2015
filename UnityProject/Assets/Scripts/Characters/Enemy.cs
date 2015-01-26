@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
 
 	static bool disableThrusters = false;
 	
+	//poop
 	public enum enemyStates
 	{
 		PATROL,
