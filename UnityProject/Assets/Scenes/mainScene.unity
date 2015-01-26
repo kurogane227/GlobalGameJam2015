@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d43eae314e494aa3ab139e37bcad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  didWeWin: 0
   titleScreenObject: {fileID: 0}
   titleScreenScript: {fileID: 0}
   titleScreenPage: {fileID: 0}
@@ -224,12 +225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616fc4579c60e1149b0f5faff073c8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childrenHooray1: {fileID: 0}
-  childrenHooray2: {fileID: 0}
-  childrenHooray3: {fileID: 0}
-  childrenSad1: {fileID: 0}
-  childrenSad2: {fileID: 0}
-  childrenSad3: {fileID: 0}
+  childrenHooray1: {fileID: 8300000, guid: f3b8d6e5b355d394cae08565b894fe95, type: 3}
+  childrenHooray2: {fileID: 8300000, guid: d66334ecabf07dd489ea0274951f8481, type: 3}
+  childrenHooray3: {fileID: 8300000, guid: 0a474d7d39cf80e428739d374d2ca792, type: 3}
+  childrenSad1: {fileID: 8300000, guid: cbaa9814a610ed744a7c48de48a11aed, type: 3}
+  childrenSad2: {fileID: 8300000, guid: b820034f060cf62408a41e791512c056, type: 3}
+  childrenSad3: {fileID: 8300000, guid: 05475e7bf8d0cb44eb0e315f646fdd7a, type: 3}
   miltonGreetingSuccess1: {fileID: 0}
   miltonGreetingSuccess2: {fileID: 0}
   miltonGreetingSuccess3: {fileID: 0}
@@ -250,8 +251,8 @@ MonoBehaviour:
   collisionSmack2: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
   collisionSmack3: {fileID: 8300000, guid: adefe5a0482bbe24f8c6df9e5a77ff0f, type: 3}
   shortCircuit: {fileID: 0}
-  fanfare: {fileID: 0}
-  boo: {fileID: 0}
+  fanfare: {fileID: 8300000, guid: d66334ecabf07dd489ea0274951f8481, type: 3}
+  boo: {fileID: 8300000, guid: cbaa9814a610ed744a7c48de48a11aed, type: 3}
   player1Scream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
   player2Scream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
   player3Scream: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
@@ -261,6 +262,7 @@ MonoBehaviour:
     type: 3}
   ambientAudio: {fileID: 8300000, guid: 66b0fc801473ee14d8732a82b1ced0d0, type: 3}
   audioToPlay: {fileID: 1854843173}
+  endgame: {fileID: 8300000, guid: a40ef83b68ab1324bb1880d5b37b9941, type: 3}
 --- !u!82 &1854843173
 AudioSource:
   m_ObjectHideFlags: 0
@@ -269,7 +271,7 @@ AudioSource:
   m_GameObject: {fileID: 1854843169}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 6fd8b230ab223894f8bec14b819d3ac4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 07ec1dc53053e6542a49ece0bba2bb54, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

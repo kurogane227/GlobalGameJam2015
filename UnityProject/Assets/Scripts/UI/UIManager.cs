@@ -6,9 +6,9 @@ public class UIManager : MonoBehaviour {
 	private float doubleSpeed = 0.001f;
 	private float singleSpeed = 0.001f; 
 	private float brakeSpeed = -0.001f;
-	
+
 	public bool didWeWin = false;
-	
+
 	private static UIManager instance = null;
 	public static UIManager Instance
 	{

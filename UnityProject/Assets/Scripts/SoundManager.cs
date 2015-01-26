@@ -59,6 +59,8 @@ public class SoundManager : MonoBehaviour {
 
 	public AudioSource audioToPlay = null;
 
+	public AudioClip endgame = null;
+
 	// Use this for initialization
 	void Awake () {
 		if (instance != null && instance != this)
@@ -72,6 +74,11 @@ public class SoundManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad(this.gameObject);
 	}
+
+	public void PlayEndGame(){
+		audioToPlay.PlayOneShot(endgame);
+	}
+
 
 	public void PlayEveryoneScream(){
 		audioToPlay.PlayOneShot(everyoneScream);
@@ -93,6 +100,10 @@ public class SoundManager : MonoBehaviour {
 		else{
 			audioToPlay.PlayOneShot(everyoneScream);
 		}
+	}
+	
+	public void PlayCheer(){
+		audioToPlay.PlayOneShot(fanfare);
 	}
 
 	public void PlayBouncyClip(){

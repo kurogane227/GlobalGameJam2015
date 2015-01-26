@@ -302,7 +302,7 @@ public class InputManager : MonoBehaviour {
 			InputManager.p3_Controller.rightTrigger = Input.GetAxis ("TriggersR_3");
 		}
 		
-		
+		//print (Input.GetAxis ("TriggersL_3"));
 		
 		//a button
 		if ((int)InputManager.p3_Controller.a_Button <= 1)
