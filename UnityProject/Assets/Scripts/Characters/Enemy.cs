@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 	private float patrolTimer;
 	private int wayPointIndex;
 
-	static bool disableThrusters = false;
+	
 	
 	public enum enemyStates
 	{
@@ -85,7 +85,6 @@ public class Enemy : MonoBehaviour
 	
 	float timer;
 	
-	//public Rigidbody playerRB;
 	
 	public	difficultyStates difficulty;
 	
@@ -93,6 +92,7 @@ public class Enemy : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		nav.updateRotation = false;
 		player = GameObject.FindWithTag("Player");
 		_Persistent = GameObject.Find ("_SCRIPTS");
 		UI = _Persistent.GetComponent<UIManager>();
@@ -110,10 +110,11 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		//Debug.Log(player.rigidbody.velocity.magnitude*player.rigidbody.velocity.magnitude);
+		
 		timer += Time.deltaTime;
 		//if(timer > 1)
 		{
-			//Debug.Log(playerRB.rigidbody.velocity.magnitude*playerRB.rigidbody.velocity.magnitude);
 			timer = 0;
 		}
 		if (dead && currentState == enemyStates.DEAD)
@@ -130,6 +131,7 @@ public class Enemy : MonoBehaviour
 	
 	void Engage()
 	{
+		player.rigidbody.velocity = Vector3.zero;
 		engageTimer+= Time.deltaTime;
 		nav.Stop ();
 		if(engageTimer >= 0)
@@ -138,7 +140,7 @@ public class Enemy : MonoBehaviour
 		{
 			currentState = enemyStates.EXIT;
 			engageOver = true;
-			disableThrusters = false;
+			InputManager.disableTriggers = false;
 			engageTimer = -1;
 			enemyTrigger.engage = false;
 			int engageSuccess = 0;
@@ -159,13 +161,13 @@ public class Enemy : MonoBehaviour
 				if(engageSuccess >=  engageFailure)
 				{
 					//engage success
-					gameMain.groupScore++;
+					//gameMain.groupScore++;
 					Debug.Log ("EVENT SUCCESS");
 				}
 				else
 				{
 					//engage failure
-					gameMain.groupHealth--;
+					//gameMain.groupHealth--;
 					Debug.Log ("EVENT FAILED");
 				}
 			}
@@ -206,7 +208,7 @@ public class Enemy : MonoBehaviour
 
 	public void EngageSet()
 	{
-		disableThrusters = true;
+		InputManager.disableTriggers = true;
 		currentState = enemyStates.ENGAGE;
 		promptThresholds = new int[3];
 		promptButtons = new string[3];
@@ -563,6 +565,7 @@ public class Enemy : MonoBehaviour
 	}
 	void SubtractScore(int pNum)
 	{
+	/*
 		if (pNum == 1 )
 			gameMain.p1Score-=2;
 		else if (pNum == 2 )
@@ -570,6 +573,7 @@ public class Enemy : MonoBehaviour
 		else if (pNum == 3 )
 			gameMain.p3Score-=2;
 		else if (pNum == 4 )
-			gameMain.p4Score-=2;		
+			gameMain.p4Score-=2;	
+	*/	
 	}
 }

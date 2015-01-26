@@ -48,6 +48,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 492996}
   - 212: {fileID: 21214672}
+  - 114: {fileID: 11457692}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -165,6 +166,18 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11457692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9578bac46d8c6764d8494f41a291b56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11487680}
 --- !u!114 &11476216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +193,7 @@ MonoBehaviour:
   engage: 0
   exit: 0
   exitPos: {x: 0, y: 0, z: 0}
-  crashThreshold: 2.74000001
+  crashThreshold: 37
 --- !u!114 &11487680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +223,7 @@ MonoBehaviour:
   hardMax: 15
   engageTimer: 0
   engageTimeLimit: 5
-  deathForce: 800
+  deathForce: 600
   deathRadius: 100
   dead: 0
   difficulty: 2

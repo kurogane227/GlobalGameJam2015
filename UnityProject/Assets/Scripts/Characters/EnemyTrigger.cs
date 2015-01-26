@@ -7,7 +7,7 @@ public class EnemyTrigger : MonoBehaviour
 	public bool engage =false;
 	public bool exit = false;
 	public Vector3 exitPos;
-	
+		
 	public float crashThreshold;
 	
 	private Enemy enemy;
@@ -27,14 +27,15 @@ public class EnemyTrigger : MonoBehaviour
 	{
 		if (other == player.collider && !enemy.dead) 
 		{
-			//if(other.rigidbody.velocity.magnitude*other.rigidbody.velocity.magnitude > crashThreshold && enemy.currentState == Enemy.enemyStates.PATROL)
+			if(other.rigidbody.velocity.magnitude*other.rigidbody.velocity.magnitude > crashThreshold && enemy.currentState == Enemy.enemyStates.PATROL)
 			{
-			Debug.Log("KABOOM");
-				//enemy.dead = true;
-				//enemy.Die(other.transform.position);
-				//enemy.currentState = Enemy.enemyStates.DEAD
+				Debug.Log("KABOOM");
+				Debug.Log(other.rigidbody.velocity.magnitude*other.rigidbody.velocity.magnitude);
+				enemy.dead = true;
+				enemy.Die(other.transform.position);
+				enemy.currentState = Enemy.enemyStates.DEAD;
 			}
-			//else
+			else
 			{
 				if(enemy.currentState == Enemy.enemyStates.PATROL)
 				{
