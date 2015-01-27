@@ -22,7 +22,6 @@ public class UIPanel_HUD : MonoBehaviour {
 
 	private Camera thisMainCamera = null;
 	private GameObject objectToAttachTo = null;
-	public GameObject canvasObject = null;
 
 	// Use this for initialization
 	void Start ()
@@ -75,7 +74,7 @@ public class UIPanel_HUD : MonoBehaviour {
 	protected Vector2 ProjectToScreenSpace(GameObject attachToThisObject)
 	{			
 		//first you need the RectTransform component of your canvas
-		RectTransform CanvasRect = canvasObject.GetComponent<RectTransform>();
+		RectTransform CanvasRect = this.gameObject.GetComponent<RectTransform>();
 		
 		//then you calculate the position of the UI element
 		//0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
