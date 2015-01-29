@@ -38,6 +38,35 @@ public class UIManager : MonoBehaviour {
 
 	void Update()
 	{
+		//==========================|
+		// MENU COMMANDS
+		//==========================|
+		if (titleScreenScript != null && ResultsScript == null)
+		{
+			if (Input.GetKeyDown(KeyCode.P) && titleScreenPage.activeSelf)
+			{
+				titleScreenScript.OnStartButtonPressed();
+			}
+			
+			if (Input.GetKeyDown(KeyCode.C) && titleScreenPage.activeSelf)
+			{
+				titleScreenScript.OnCreditsButtonPressed();
+			}
+			
+			if (Input.GetKeyDown(KeyCode.B) && creditsScreenPage.activeSelf && ResultsScript == null)
+			{
+				creditsScreenScript.OnBackButtonPressed();
+			}
+		}
+		
+		if (ResultsScript != null && titleScreenScript == null)
+		{
+			if (Input.GetKeyDown(KeyCode.B))
+			{
+				ResultsScript.OnBackButtonPressed();
+			}
+		}
+	
 		//Input handling for UI
 		if (HUDScript != null)
 		{
@@ -398,6 +427,7 @@ public class UIManager : MonoBehaviour {
 	//==================================================================================================|
 	public GameObject titleScreenObject = null;
 	public UIPanel_Title titleScreenScript = null;
+	public UIPanel_Credits creditsScreenScript = null;
 	public GameObject titleScreenPage = null;
 	public GameObject creditsScreenPage = null;
 	
@@ -406,11 +436,12 @@ public class UIManager : MonoBehaviour {
 		// Load the main menu UI
 		titleScreenObject = GameObject.Instantiate(Resources.Load ("UI/Prefabs/MainMenu")) as GameObject;
 		titleScreenScript = (UIPanel_Title)titleScreenObject.GetComponentInChildren<UIPanel_Title>() as UIPanel_Title;
+		creditsScreenScript = (UIPanel_Credits)titleScreenObject.GetComponentInChildren<UIPanel_Credits>() as UIPanel_Credits;
 		
 		// Turn the proper pages on/off
 		titleScreenPage = titleScreenScript.gameObject;
 		titleScreenPage.SetActive(true);
-		creditsScreenPage = titleScreenObject.GetComponentInChildren<UIPanel_Credits>().gameObject;
+		creditsScreenPage = creditsScreenScript.gameObject;
 		creditsScreenPage.SetActive(false);
 	}
 
